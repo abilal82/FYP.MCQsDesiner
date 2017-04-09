@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MCQsDesigner.BOL.DegreeLevel">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>DegreeLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MCQsDesigner.BOL.DegreeProgram">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAEAAA=</HashCode>
+      <FileName>DegreeProgram.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DegreeLevel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MCQsDesigner.BOL.Course">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAIAAEAAAAAQgAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Course.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DegreeProgram" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MCQsDesigner.BOL.MultipleChoice">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAABAAAAAAAAAAAAEBAAAAAAAAAAAA=</HashCode>
+      <FileName>MultipleChoice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MCQsDesigner.BOL.ExamQuestion">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAABAAAAAAAQCAAA=</HashCode>
+      <FileName>ExamQuestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MCQsDesigner.BOL.Exam">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAACQEAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Exam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
