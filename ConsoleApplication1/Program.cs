@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCQsDesigner.BOL;
 
-namespace ConsoleApplication1
+namespace MCQsDesigner.DAL
 {
     class Program
     {
