@@ -159,6 +159,16 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MCQsDesigner.BOL\MCQsDesigner.BOL.csproj">
+      <Project>{89c9f2ab-b203-4d43-be14-e8c334360ec4}</Project>
+      <Name>MCQsDesigner.BOL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MCQsDesigner.DAL\MCQsDesigner.DAL.csproj">
+      <Project>{32c9d366-3384-41d5-bd44-1c66fd2afcf4}</Project>
+      <Name>MCQsDesigner.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MCQsDesigner.BOL;
 
 namespace MCQsDesigner.DAL
 {
@@ -11,7 +10,6 @@ namespace MCQsDesigner.DAL
     {
         static void Main(string[] args)
         {
-          
         }
     }
 }
