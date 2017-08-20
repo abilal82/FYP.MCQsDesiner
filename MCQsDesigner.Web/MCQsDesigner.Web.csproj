@@ -214,8 +214,6 @@
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DTOs\CategoryDTO.cs" />
-    <Compile Include="DTOs\DegreeProgramDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
