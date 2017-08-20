@@ -9,9 +9,6 @@ namespace MCQsDesigner.Web.Controllers
     public class QuestionController : Controller
     {
         // GET: Question
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }
