@@ -8,7 +8,6 @@ namespace MCQsDesigner.Web.Controllers
 {
     public class QuestionController : Controller
     {
-        // GET: Question
-        
+          
     }
 }
