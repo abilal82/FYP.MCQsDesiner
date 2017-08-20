@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="DTOs\CategoryDTO.cs" />
     <Compile Include="DTOs\DegreeProgramDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -480,6 +481,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="font-awesome\" />
     <Folder Include="Scripts\plugins\" />
+    <Folder Include="Views\Question\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
