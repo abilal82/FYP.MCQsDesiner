@@ -1,0 +1,126 @@
+﻿body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+
+    .dl-horizontal dt {
+	white-space: normal;
+}
+
+*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+
+a {
+  outline: none;
+
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #78808a;
+}
+a:active {
+  background-color: transparent;
+}
+a:hover {
+  color: #78808a;
+}
+
+ul {margin:20px auto;}
+li {
+	display: inline;
+	border:solid 0px #000;
+	
+	margin:auto;
+
+
+}
+
+section.student {
+	background:url('../images/student.jpg') no-repeat 50% 50%;
+
+	
+	background-size: cover;
+}
+
+section.admin {
+  background: url('../images/admin.jpg') no-repeat 50% 50%;
+ 
+  background-size: cover;
+ 
+}
+section.center {
+  background: url('../images/center.jpg') no-repeat 50% 50%;
+ 
+  background-size: cover;
+ 
+}
+section {
+  width: 320px;
+  height: 320px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin:0 0 5px 0;
+}
+section:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(95, 170, 163, 0.4);
+  transition: all 0.5s ease;
+  /*bottom: -225px;*/
+  bottom: 318px;
+}
+section:hover:before {
+  bottom: 0;
+}
+section a {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+}
+section .txt {
+  z-index: 10;
+  width: 100%;
+  display: block;
+  bottom: 50px;
+  position: absolute;
+  left: 0;
+  text-align: center;
+}
+section .tsxt img {
+  margin-bottom: 20px;
+}
+/* starting Login modal css */
+ .modal-header, h4, .close {
+      background-color: #d1d3d6;
+      color:#ffffff !important;
+      text-align: center;
+      font-size: 30px;
+  }
+
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+ 
+ /*panel body */
+
+ .panel-form{
+     text-align:center;
+     width:20%;
+
+ }

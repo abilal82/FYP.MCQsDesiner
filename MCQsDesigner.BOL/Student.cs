@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MCQsDesigner.BOL
 {
-    public class Student:IdentityUser
+    public class Student
     {
 
     }

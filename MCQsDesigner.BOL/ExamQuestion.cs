@@ -8,14 +8,15 @@ namespace MCQsDesigner.BOL
 {
     public class ExamQuestion
     {
-        public ExamQuestion()
-        {
-            MultipleChoices = new HashSet<MultipleChoice>();
-        }
-        public int QuestionId { get; set; }
+       
+        public int Id { get; set; }
         public string QuestionTitle { get; set; }
-        public string CorrectAnswer { get; set; }
+        public string OptionA { get; set; }
+        public string OptionB { get; set; }
+        public string OptionC { get; set; }
+        public string OptionD{ get; set; }
 
-        public virtual ICollection<MultipleChoice> MultipleChoices { get; set; }
+        public string CorrectAnswer { get; set; }
+        public byte Marks { get; set; }
     }
 }

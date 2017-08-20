@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{32C9D366-3384-41D5-BD44-1C66FD2AFCF4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{7CB52511-7574-477E-B4A7-F23941477D75}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MCQsDesigner.DAL</RootNamespace>
     <AssemblyName>MCQsDesigner.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,7 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,17 +57,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="DAC\CategoryDAC.cs" />
+    <Compile Include="DAC\CourseDAC.cs" />
+    <Compile Include="DAC\DegreeProgramDAC.cs" />
+    <Compile Include="DAC\ExamDAC.cs" />
+    <Compile Include="Migrations\201707191123041_InitialCreate.cs" />
+    <Compile Include="Migrations\201707191123041_InitialCreate.Designer.cs">
+      <DependentUpon>201707191123041_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707191126205_SeedUserAndRole.cs" />
+    <Compile Include="Migrations\201707191126205_SeedUserAndRole.Designer.cs">
+      <DependentUpon>201707191126205_SeedUserAndRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707241638013_AddCategryAndDegreeProgramTable.cs" />
+    <Compile Include="Migrations\201707241638013_AddCategryAndDegreeProgramTable.Designer.cs">
+      <DependentUpon>201707241638013_AddCategryAndDegreeProgramTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707281753276_AddOneToManyDegreeProgramAndCourse.cs" />
+    <Compile Include="Migrations\201707281753276_AddOneToManyDegreeProgramAndCourse.Designer.cs">
+      <DependentUpon>201707281753276_AddOneToManyDegreeProgramAndCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707291728400_AddExamTableAndRelationshipCourse.cs" />
+    <Compile Include="Migrations\201707291728400_AddExamTableAndRelationshipCourse.Designer.cs">
+      <DependentUpon>201707291728400_AddExamTableAndRelationshipCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708172012238_ChangingExamDateInExamTabe.cs" />
+    <Compile Include="Migrations\201708172012238_ChangingExamDateInExamTabe.Designer.cs">
+      <DependentUpon>201708172012238_ChangingExamDateInExamTabe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708172028505_ChangingCourseProperty.cs" />
+    <Compile Include="Migrations\201708172028505_ChangingCourseProperty.Designer.cs">
+      <DependentUpon>201708172028505_ChangingCourseProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCQsDesigner.BOL\MCQsDesigner.BOL.csproj">
       <Project>{89c9f2ab-b203-4d43-be14-e8c334360ec4}</Project>
       <Name>MCQsDesigner.BOL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707191123041_InitialCreate.resx">
+      <DependentUpon>201707191123041_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707191126205_SeedUserAndRole.resx">
+      <DependentUpon>201707191126205_SeedUserAndRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707241638013_AddCategryAndDegreeProgramTable.resx">
+      <DependentUpon>201707241638013_AddCategryAndDegreeProgramTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281753276_AddOneToManyDegreeProgramAndCourse.resx">
+      <DependentUpon>201707281753276_AddOneToManyDegreeProgramAndCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291728400_AddExamTableAndRelationshipCourse.resx">
+      <DependentUpon>201707291728400_AddExamTableAndRelationshipCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708172012238_ChangingExamDateInExamTabe.resx">
+      <DependentUpon>201708172012238_ChangingExamDateInExamTabe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708172028505_ChangingCourseProperty.resx">
+      <DependentUpon>201708172028505_ChangingCourseProperty.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

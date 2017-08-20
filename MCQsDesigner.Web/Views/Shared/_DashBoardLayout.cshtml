@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MCQs Designer - Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <!-- Custom CSS -->
+    @Styles.Render("~/ContentDasboard/css")
+    <!-- Custom Fonts -->
+        @Styles.Render("~/font-awesome/css")
+    @Styles.Render("~/font-awesome/css")   
+  
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body >
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            @Html.Partial("_navbar");
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+       
+              
+               
+            </div>
+            
+            <ul class="nav navbar-nav side-nav">
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a href=""><img src="~/images/logo/your school.png" class="img-rounded" alt="Cinque Terre" style="width:80%;height:07%;text-align:center;"></a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index","Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCategory","Category")"><i class="glyphicon glyphicon-folder-close"></i> Category</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DegreeProgram", "Category")"><span><i class="glyphicon glyphicon-tags "></i></span> Degree Program</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCourses","Course")"><span><i class="glyphicon glyphicon-tag"></i></span> Courses</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageExams","Exam")"><span><i class="glyphicon glyphicon-book"></i></span> Exams</a>
+                    </li>
+
+                }
+                 else if(User.IsInRole("Faculty"))
+                {
+                    <li><a href=""><img src="~/images/logo/your school.png" class="img-rounded" alt="Cinque Terre" style="width:80%;height:07%;text-align:center;"></a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index","Faculty")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    
+                    <li>
+                        <a href="@Url.Action("ManageExams","Exam")"><span><i class="glyphicon glyphicon-book"></i></span> Exams</a>
+                    </li>
+
+                }
+            </ul>
+
+          
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div >
+            <div class="container">
+                <!-- Page Heading -->
+                <!--  <div class="row">
+                      <div class="col-lg-12">
+
+                          <ol class="breadcrumb">
+                              <li>
+                                  <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
+                              </li>
+                              <li class="active">
+                                  <i class="fa fa-file"></i> Blank Page
+                              </li>
+                          </ol>
+                      </div>
+                  </div>
+
+                  
+                -->
+                @RenderBody()
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    
+    @Scripts.Render("~/bundles/lib")
+
+    @RenderSection("scripts", required: false)
+    <!-- Bootstrap Core JavaScript -->
+   
+</body>
+</html>
