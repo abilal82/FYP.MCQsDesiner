@@ -11,6 +11,10 @@ namespace MCQsDesigner.BOL
     [Table("Exams")]
     public class Exam
     {
+        public Exam()
+        {
+            ExamQuestion = new HashSet<ExamQuestion>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -25,5 +29,6 @@ namespace MCQsDesigner.BOL
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
 
+        public virtual ICollection<ExamQuestion> ExamQuestion { get; set; }
     }
 }

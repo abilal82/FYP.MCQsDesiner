@@ -10,24 +10,22 @@ namespace MCQsDesigner.DAL.DAC
 {
     public class ExamDAC
     {
-
        private ApplicationDbContext _context;
         public ExamDAC(ApplicationDbContext context)
         {
             _context = context;
         }
-
         public List<Exam> GetAll()
         {
             return _context.Exams.Include(x => x.Course).ToList();
         }
-
-
         public List<Exam> GetExamAndCourses()
         {
-            return _context.Exams.Include(x => x.Course).Include(x=>x.Course.DegreeProgram).ToList();
+            return _context.Exams
+                            .Include(x => x.Course)
+                            .Include(x=>x.Course.DegreeProgram)
+                            .ToList();
         }
-
         public void Insert(Exam exam)
         {
             using (_context)
@@ -52,8 +50,5 @@ namespace MCQsDesigner.DAL.DAC
             }
             
         }
-
-
-
     }
 }
