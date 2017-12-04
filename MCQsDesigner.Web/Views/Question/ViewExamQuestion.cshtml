@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "ViewExamQuestion";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+
+<h2>ViewExamQuestion</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
+
+            <ul class="nav nav-tabs">
+                <li class="active" id="list-tab"><a href="#exam-list" data-toggle="tab">Question List</a></li>
+               
+            </ul>
+            <div class="tab-content">
+
+                <div id="exam-list" class="tab-pane fade in active">
+                    <table id="question-tbl" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Question</th>
+                                <th>Option A</th>
+                                <th>Option B</th>
+                                <th>Option C</th>
+                                <th>Option D</th>
+                                <th>Marks</th>
+                                <th>Correct Answer</th>
+                                <th>Exam Code</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+               
+                <!-- /#ion-icons -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>
+
+@section scripts {
+
+<script>
+    $(document).ready(function () {
+
+        var dataId = parseInt(localStorage.getItem("Temp-question-data"));
+            
+        console.log("from veiw controller, the value  is now accessibale "+dataId);
+        var table = $("#question-tbl").DataTable({
+
+            ajax: {
+                url: "/api/examservice/GetQuestionByExamId/"+dataId,
+                dataSrc: ""
+  
+            },
+            columns: [
+              {
+                  data: "id"
+              },
+              {
+                  data: "questionTitle"
+              },
+              {
+                  data: "optionA"
+              },
+              {
+                  data: "optionB"
+              },
+              {
+                  data: "optionC"
+                 
+              },
+              {
+                  data: "optionD"
+              },
+              {
+                  data: "marks"
+              },
+              {
+                  data: "correctAnswer"
+              }, 
+              {
+                  data: "examCode"
+              },
+              {
+                  data: "id",
+                  render: function (data,type,row) {
+                      return  "<a href='#' ><span data-question-id='" + data + "' class='glyphicon glyphicon-trash  js-delete'></span>  </a> ";
+                  }
+              }
+
+              
+
+
+            ]
+
+
+        });
+        $("#question-tbl").on("click", ".js-delete", function () {
+
+            var btn = $(this);
+
+            bootbox.confirm("Are you sure you want to delete this ?", function (result) {
+
+                if (result) {
+                    $.ajax({
+                        url: "/api/examservice/DeleteQuestion/" + btn.attr("data-question-id"),
+                        method: 'DELETE',
+                        success: function () {
+                            table.row(btn.parents("tr").remove()).remove().draw();
+                            toastr.success("Deleted SuccessFully ");
+
+                        },
+                        error: function (response) {
+                            toastr.error(response.statusText);
+
+                        }
+
+                    })
+                } // end if
+
+            }) // end bootbox
+
+        });
+    });
+
+</script>    
+    
+}

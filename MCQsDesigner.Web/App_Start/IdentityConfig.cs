@@ -12,7 +12,7 @@ using System.Web;
 
 namespace MCQsDesigner.Web.App_Start
 {
-   public class AplicationUserStore : UserStore<ApplicationUser>
+    public class AplicationUserStore : UserStore<ApplicationUser>
     {
         public AplicationUserStore(ApplicationDbContext context)
             : base(context)
@@ -33,7 +33,7 @@ namespace MCQsDesigner.Web.App_Start
             return manager;
         }
 
-       
+
     }
 
 

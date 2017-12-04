@@ -11,7 +11,7 @@
     <!-- Custom CSS -->
     @Styles.Render("~/ContentDasboard/css")
     <!-- Custom Fonts -->
-        @Styles.Render("~/font-awesome/css")
+    @Styles.Render("~/font-awesome/css")
     @Styles.Render("~/font-awesome/css")   
   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,7 +37,7 @@
 
                 @if (User.IsInRole("Admin"))
                 {
-                    <li><a href=""><img src="~/images/logo/your school.png" class="img-rounded" alt="Cinque Terre" style="width:80%;height:07%;text-align:center;"></a></li>
+                    
 
                     <li>
                         <a href="@Url.Action("Index","Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>

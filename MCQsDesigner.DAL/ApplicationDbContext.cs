@@ -20,10 +20,12 @@ namespace MCQsDesigner.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<ExamQuestion> ExamQuestions { get; set; }
+
+        public DbSet<StudentProfile> StudentProfiles { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-
     }
 }

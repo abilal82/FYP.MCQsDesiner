@@ -18,13 +18,14 @@ namespace MCQsDesigner.Web.Controllers
         protected override void Dispose(bool disposing)
         {
             _category.Dispose();
+            _degree.Dispose();
             base.Dispose(disposing);
         }
         // GET: Category
         [HttpGet]
         public ActionResult ManageCategory()
         {
-           
+
             return View();
         }
 
@@ -32,6 +33,7 @@ namespace MCQsDesigner.Web.Controllers
         public ActionResult AddCategory(CategoryViewModel model)
         {
            
+
             _category.InsertCategory(model.Categories);
             return RedirectToAction("ManageCategory");
         }
@@ -45,7 +47,7 @@ namespace MCQsDesigner.Web.Controllers
            
             var model = new DegreeProgramsViewModel()
             {
-                Categories = _category.GetAll()
+                Categories = _category.GetAllCategories()
             };
           
             return View(model);

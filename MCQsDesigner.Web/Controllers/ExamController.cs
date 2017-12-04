@@ -29,7 +29,7 @@ namespace MCQsDesigner.Web.Controllers
 
             var model = new ExamViewModel() {
 
-                Categories = _category.GetAll(),
+                Categories = _category.GetAllCategories(),
                 DegreePrograms = _degree.GetAll(),
                 Courses = _course.getAllCourses()
                 
@@ -46,6 +46,7 @@ namespace MCQsDesigner.Web.Controllers
             ExamDAC examDAC = new ExamDAC(new ApplicationDbContext());
             var exam = new Exam()
             {
+                Id = model.Exam.Id,
                 ExamCode = model.Exam.ExamCode,
                 ExamDate = model.Exam.ExamDate,
                 Duration = model.Exam.Duration,
@@ -59,6 +60,12 @@ namespace MCQsDesigner.Web.Controllers
 
 
 
+            return RedirectToAction("ManageExams");
+        }
+
+        [HttpPost]
+        public ActionResult EditExam(ExamViewModel examView)
+        {
             return RedirectToAction("ManageExams");
         }
        

@@ -1,0 +1,120 @@
+﻿@model MCQsDesigner.Web.Models.ViewModel.QuestionViewModel
+
+@{
+    ViewBag.Title = "ManagesQuestions";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+
+
+
+<div id="page-wrapper">
+    <h2>
+        <i class="glyphicon glyphicon-edit"></i> Manage ExamQuestion
+    </h2>
+</div>
+
+
+<div class="row">
+    @using (Html.BeginForm("AddQuestion", "Question", FormMethod.Post, new { @class = "form", role = "form", @id = "question-form" }))
+    {
+        @Html.ValidationSummary()
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Question</h3>
+                    <div class="box-tools pull-right ">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-body pad">
+                        <div class="form-group">
+                            @Html.TextAreaFor(x => x.QuestionTitle, new { @class = "textarea", @placeholder = "Place some text here", style = "width: 100%; height: 172px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" })
+                            @Html.ValidationMessageFor(x => x.QuestionTitle)
+                        </div>
+
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!--1 col-md-6 div end-->
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Options</h3>
+                    <div class="box-tools pull-right ">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-body pad">
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.ExamID, new { @class = "control-label" })
+                            @Html.DropDownListFor(x => x.ExamID, new SelectList(Model.Exams, "Id", "ExamCode"), new { @class = "form-control" })
+                         
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.Marks, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Marks, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Marks)
+
+
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.OptionA, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.OptionA, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.OptionA)
+
+
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.OptionB, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.OptionB, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.OptionB)
+
+
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.OptionC, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.OptionC, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.OptionC)
+
+
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.OptionD, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.OptionD, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.OptionD)
+
+
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            @Html.LabelFor(x => x.CorrectAnswer, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.CorrectAnswer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.CorrectAnswer)
+                        </div>
+
+                    </div>
+                    <div class="form-group col-md-offset-5 ">
+                        <button type="submit" class="btn btn-primary" id="btn-form">Save</button>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!--2 col-md-6 div end-->
+
+    }
+</div><!--End row-->
+
+@section scripts {
+
+    <script>
+
+        $(function () {
+
+
+            //bootstrap WYSIHTML5 - text editor
+            $(".textarea").wysihtml5();
+        });
+
+    </script>
+
+}

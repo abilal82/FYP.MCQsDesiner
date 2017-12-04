@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MCQsDesigner.DAL.DAC
 {
-    public class DegreeProgramDAC
+    public class DegreeProgramDAC : IDisposable
     {
         private ApplicationDbContext _context;
         public DegreeProgramDAC()

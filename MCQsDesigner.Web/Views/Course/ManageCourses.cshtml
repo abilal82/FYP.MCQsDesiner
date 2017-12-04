@@ -3,8 +3,7 @@
     ViewBag.Title = "SubCategory";
 
 
-        Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
-   
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
 
 }
 
@@ -12,22 +11,17 @@
     <h2><i class="glyphicon glyphicon-edit"></i> Manage Courses</h2>
 </div>
 
-
-
-<div class="well-sm">
-
-    <div class="panel">
-        <div class="panel-header-custom">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#sub-list" data-toggle="tab"><i class="fa fa-navicon"></i><strong>  Courses List</strong></a></li>
-                <li><a href="#addsubcategory" data-toggle="tab"><i class="fa fa-plus"></i><strong> Course</strong></a></li>
+                <li class=""><a href="#course-list" data-toggle="tab">Courses List</a></li>
+                <li><a href="#add-course" data-toggle="tab">Add Course</a></li>
             </ul>
-        </div>
-
-        <div class="panel-body">
             <div class="tab-content">
-                <div id="sub-list" class="tab-pane fade in active">
-                    <table id="coursetbl" class="table table-bordered">
+
+                <div class="tab-pane  active " id="course-list">
+                    <table id="tbl-course" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -39,49 +33,124 @@
                             </tr>
                         </thead>
                         <tbody></tbody>
+
                     </table>
                 </div>
-                <div id="addsubcategory" class="tab-pane fade">
-                    @using (Html.BeginForm("AddCourse", "Course", FormMethod.Post, new { @class = "form", role = "form",@id="Course-form" }))
-                    {
-                        <div class="col-xs-3">
+                <!-- #List -->
+                <!-- #Add-->
+                <div class="tab-pane box-body " id="add-course">
+                 @using (Html.BeginForm("AddCourse", "Course", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "course-form" }))
+                 {
+
+
+                    <div class="row">
+                        <!--category field-->
+                        <div class="col-md-6">
                             <div class="form-group">
-                                @Html.LabelFor(x => x.Courses.DegreeProgram.CategoryId, new { @class = "control-label" })
-                                @Html.DropDownListFor(x => x.Courses.DegreeProgram.CategoryId,new SelectList(Model.Categories,"Id","Title"),"Select Category", new { @class = "form-control", @id = "category-Id" })
-                                          
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Courses.DegreeProgram.Id, new { @class = "control-label" })
-                                @Html.DropDownListFor(x => x.Courses.DegreeProgram.Id,
-                                                        new SelectList(Model.DegreePrograms,"Id", "ProgramTitle"), "--Select Category--",
-                                                        new { @class = "form-control", @id="degree-Id"})
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Courses.CourseTitle, new { @class = "control-label" })
-                                @Html.TextBoxFor(x => x.Courses.CourseTitle, new { @class = "form-control",@id="Course-title"})
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Courses.CourseCode,new { @class="control-label"})
-                                @Html.TextBoxFor(x=> x.Courses.CourseCode,new { @class="form-control"})
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Courses.CreditHour, new { @class = "control-label" })
-                                @Html.TextBoxFor(x => x.Courses.CreditHour, new { @class = "form-control" })
+                              @Html.LabelFor(x => x.Courses.DegreeProgram.CategoryId, new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(x => x.Courses.DegreeProgram.CategoryId, new SelectList(Model.Categories, "Id", "Title"), "Select Category", new { @class = "form-control", @id = "category-Id" })
+                                </div>
+
+                             
                             </div>
 
+
+
+                        </div>
+
+                        <!--degree program field-->
+                        <div class="col-md-6">
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" id="btn-form">Add</button>
+                                @Html.LabelFor(x => x.Courses.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-4" })
+
+                                
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(x => x.Courses.DegreeProgram.Id,
+                                                      new SelectList(Model.DegreePrograms, "Id", "ProgramTitle"), "--Select Category--",
+                                                      new { @class = "form-control", @id = "degree-Id" })
+                                </div>
+                              
+                              
+
                             </div>
+
+
+                        </div>
+
+                        <!--course field-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Courses.CourseTitle, new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(x => x.Courses.CourseTitle, new { @class = "form-control", @id = "Course-title" })
+                                </div>
+
+                              
+                              
+                            </div>
+
+                        </div>
+                        <!--Course code field-->
+                        <div class="col-md-6">
+                        
+                         
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Courses.CourseCode, new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(x => x.Courses.CourseCode, new { @class = "form-control" })
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!-- credit hour Field-->
+                        <div class="col-md-6">
+                            
+                          
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Courses.CreditHour, new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    
+                                        @Html.TextBoxFor(x => x.Courses.CreditHour, new { @class = "form-control" })
+                                       
+                                </div>
+
+                            </div>
+
+
                         </div>
 
 
-                    }
+                       
 
 
-                </div>
+                      
+                    </div>
+                    <!--Row end-->
+
+                    <div class="form-group">
+                        <div class="col-md-offset-5 col-md-7">
+                            <button type="submit" class="btn btn-primary" id="btn-form">  Save  </button>
+                        </div>
+                    </div>
+
+
+
+
+                 }
+                <!-- /#ion-icons -->
             </div>
+            <!-- /.tab-content -->
         </div>
+        <!-- /.nav-tabs-custom -->
     </div>
+    <!-- /.col -->
+</div>
+
+
 </div>
 
 
@@ -99,7 +168,7 @@
                 var val = $(this).val();
                 $.ajax({
 
-                    url: "/api/Course/GetProgramsList/" + val,
+                    url: "/api/CourseService/GetProgramsList/" + val,
                     success: function (result) {
                         $.each(result, function (index, row) {
 
@@ -111,9 +180,9 @@
             });
 
 
-            var table = $("#coursetbl").DataTable({
+            var table = $("#tbl-course").DataTable({
                 ajax: {
-                    url: "/api/Course/GetCourseDetail",
+                    url: "/api/CourseService/GetCourseDetail",
                     dataSrc: ""
                 },
                 columns: [
@@ -143,7 +212,7 @@
 
             });
 
-            $("#coursetbl").on("click", ".js-delete", function () {
+            $("#tbl-course").on("click", ".js-delete", function () {
 
                 var btn = $(this);
 
@@ -151,7 +220,7 @@
 
                     if (result) {
                         $.ajax({
-                            url: "/api/course/DeleteCourse/" + btn.attr("data-course-id"),
+                            url: "/api/courseService/DeleteCourse/" + btn.attr("data-course-id"),
                             method: 'DELETE',
                             success: function () {
                                 table.row(btn.parents("tr").remove()).remove().draw();

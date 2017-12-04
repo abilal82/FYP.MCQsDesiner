@@ -28,9 +28,26 @@ namespace MCQsDesigner.DAL.DAC
         }
         public void Insert(Exam exam)
         {
+
             using (_context)
             {
-                _context.Exams.Add(exam);
+                if(exam.Id == 0)
+                {
+                 _context.Exams.Add(exam);
+
+                }
+                else
+                {
+                    var examInDB =   _context.Exams.Include(x => x.Course)
+                                   .Include(x => x.Course.DegreeProgram)
+                                   .SingleOrDefault(x => x.Id == exam.Id);
+
+                    examInDB.ExamCode = exam.ExamCode;
+                    examInDB.ExamDate = exam.ExamDate;
+                    examInDB.Duration = exam.Duration;
+                    examInDB.CourseId = exam.CourseId;
+
+                }
                 _context.SaveChanges();
 
             }
@@ -50,5 +67,18 @@ namespace MCQsDesigner.DAL.DAC
             }
             
         }
+
+        public Exam GetExamById(int id)
+        {
+
+            return _context.Exams.Include(x => x.Course)
+                                .Include(x => x.Course.DegreeProgram)
+                                .Include(x=>x.Course.DegreeProgram.Category)
+                                .SingleOrDefault(x => x.Id == id);
+
+
+        }
+      
+
     }
 }

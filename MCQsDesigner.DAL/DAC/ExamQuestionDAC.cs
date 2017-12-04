@@ -33,10 +33,30 @@ namespace MCQsDesigner.DAL.DAC
         {
             using (_context)
             {
-               return _context.ExamQuestions.Find(Id);
+                return _context.ExamQuestions.SingleOrDefault(x => x.Id == Id);
             }
         }
 
+        public void CreateQuestion(ExamQuestion question)
+        {
+            using (_context)
+            {
+                try
+                {
+                    _context.ExamQuestions.Add(question);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+
+                }
+             
+
+
+            }
+
+        }
         public void Delete(int Id)
         {
             using (_context)

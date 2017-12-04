@@ -64,6 +64,7 @@
     <Compile Include="DAC\DegreeProgramDAC.cs" />
     <Compile Include="DAC\ExamDAC.cs" />
     <Compile Include="DAC\ExamQuestionDAC.cs" />
+    <Compile Include="DAC\UserDAC.cs" />
     <Compile Include="Migrations\201707191123041_InitialCreate.cs" />
     <Compile Include="Migrations\201707191123041_InitialCreate.Designer.cs">
       <DependentUpon>201707191123041_InitialCreate.cs</DependentUpon>
@@ -95,6 +96,14 @@
     <Compile Include="Migrations\201708202115391_AddExamQuestionTableAndRelationWithExam.cs" />
     <Compile Include="Migrations\201708202115391_AddExamQuestionTableAndRelationWithExam.Designer.cs">
       <DependentUpon>201708202115391_AddExamQuestionTableAndRelationWithExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051210426_UnknownMigrationAdding.cs" />
+    <Compile Include="Migrations\201711051210426_UnknownMigrationAdding.Designer.cs">
+      <DependentUpon>201711051210426_UnknownMigrationAdding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091359356_CreatedStudentAndRelationBetweenApplicationUser.cs" />
+    <Compile Include="Migrations\201711091359356_CreatedStudentAndRelationBetweenApplicationUser.Designer.cs">
+      <DependentUpon>201711091359356_CreatedStudentAndRelationBetweenApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +144,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708202115391_AddExamQuestionTableAndRelationWithExam.resx">
       <DependentUpon>201708202115391_AddExamQuestionTableAndRelationWithExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051210426_UnknownMigrationAdding.resx">
+      <DependentUpon>201711051210426_UnknownMigrationAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091359356_CreatedStudentAndRelationBetweenApplicationUser.resx">
+      <DependentUpon>201711091359356_CreatedStudentAndRelationBetweenApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

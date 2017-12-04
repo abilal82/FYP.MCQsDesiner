@@ -2,30 +2,24 @@
 @{
     ViewBag.Title = "SubCategory";
 
-    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
-
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
 }
 
 <div id="page-wrapper">
     <h2><i class="glyphicon glyphicon-edit"></i> Manage SubCategory</h2>
 </div>
 
-
-
-<div class="well-sm">
-
-    <div class="panel">
-        <div class="panel-header-custom">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#sub-list" data-toggle="tab"><i class="fa fa-navicon"></i><strong>  Category List</strong></a></li>
-                <li><a href="#addsubcategory" data-toggle="tab"><i class="fa fa-plus"></i><strong>  Category</strong></a></li>
+                <li class="active"><a href="#degree-list" data-toggle="tab">Program List</a></li>
+                <li><a href="#addsubcategory" data-toggle="tab">Add Degree</a></li>
             </ul>
-        </div>
-        
-        <div class="panel-body">
             <div class="tab-content">
-                <div id="sub-list" class="tab-pane fade in active">
-                    <table id="subcategorytbl" class="table table-bordered" >
+
+                <div class="tab-pane active" id="degree-list">
+                    <table id="tbl-degree" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -35,18 +29,22 @@
                             </tr>
                         </thead>
                         <tbody></tbody>
+
+
                     </table>
                 </div>
-                <div id="addsubcategory" class="tab-pane fade">
+                <!-- #List -->
+                <!-- #Add-->
+                <div id="addsubcategory" class="tab-pane box-body">
                     @using (Html.BeginForm("AddDegreeProgram", "Category", FormMethod.Post, new { @class = "form", role = "form" }))
                     {
                         <div class="col-xs-3">
                             <div class="form-group">
-                                @Html.LabelFor(x => x.DegreePrograms.CategoryId,new { @class = "control-label"} )
+                                @Html.LabelFor(x => x.DegreePrograms.CategoryId, new { @class = "control-label" })
                                 @Html.DropDownListFor(x => x.DegreePrograms.CategoryId, new SelectList(Model.Categories, "Id", "Title"), "--Select Category--", new { @class = "form-control" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(x => x.DegreePrograms.ProgramTitle, new { @class = "control-label"})
+                                @Html.LabelFor(x => x.DegreePrograms.ProgramTitle, new { @class = "control-label" })
                                 @Html.TextBoxFor(x => x.DegreePrograms.ProgramTitle, new { @class = "form-control" })
                             </div>
                             <div class="form-group">
@@ -59,18 +57,23 @@
 
 
                 </div>
+                <!-- /#ion-icons -->
             </div>
+            <!-- /.tab-content -->
         </div>
+        <!-- /.nav-tabs-custom -->
     </div>
+    <!-- /.col -->
 </div>
+
 
 
 @section scripts {
 
     <script>
-        var table = $("#subcategorytbl").DataTable({
+        var table = $("#tbl-degree").DataTable({
             ajax: {
-                url: "/api/category/GetProgram",
+                url: "/api/categoryService/GetProgram",
                 dataSrc: ""
             },
             columns: [
@@ -94,7 +97,7 @@
 
         });
 
-        $("#subcategorytbl").on("click", ".js-delete", function () {
+        $("#tbl-degree").on("click", ".js-delete", function () {
 
             var btn = $(this);
 
@@ -102,7 +105,7 @@
 
                 if (result) {
                     $.ajax({ 
-                        url: "/api/category/DeleteDegree/"+btn.attr("data-Program-id"),
+                        url: "/api/CategoryService/DeleteDegree/" + btn.attr("data-Program-id"),
                         method: 'DELETE',
                         success: function () {
                             table.row(btn.parents("tr").remove()).remove().draw();

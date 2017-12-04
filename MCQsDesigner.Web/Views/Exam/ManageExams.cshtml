@@ -1,41 +1,31 @@
 ﻿@model MCQsDesigner.Web.Models.ViewModel.ExamViewModel
 @{
     ViewBag.Title = "ManageExams";
-
-
-    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
 
 }
 
-<h2>ManageExams</h2>
+
 
 <div id="page-wrapper">
     <h2>
-        <i class="glyphicon glyphicon-edit"></i> Manage Courses
+        <i class="glyphicon glyphicon-edit"></i> Manage Exams
     </h2>
 </div>
 
 
-
-<div class="well-sm">
-
-    <div class="panel">
-        <div class="panel-header-custom">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
+            
             <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#exam-list" data-toggle="tab"><i class="fa fa-navicon"></i><strong> Exam List</strong></a>
-                </li>
-                <li>
-                    <a href="#addExam" data-toggle="tab"><i class="fa fa-plus"></i><strong>  Exam</strong></a>
-                </li>
+                <li class="active" id="list-tab"><a href="#exam-list" data-toggle="tab">Exam List</a></li>
+                <li id="add-tab"><a href="#add-Exam" data-toggle="tab">Add Exam</a></li>
             </ul>
-        </div>
-
-        <div class="panel-body">
             <div class="tab-content">
-                <!--List Area-->
+
                 <div id="exam-list" class="tab-pane fade in active">
-                    <table id="exam-tbl" class="table table-bordered">
+                    <table id="exam-tbl" class="table table-bordered table-striped" >
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -50,73 +40,128 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <!-- End List Area-->
 
-                <div id="addExam" class="tab-pane fade">
+                <!-- #List -->
+                <!-- #Add-->
+                <div id="add-Exam" class="tab-pane box-body">
                     <!--Form Area-->
-                    @using (Html.BeginForm("AddExam", "Exam", FormMethod.Post, new { @class = "form", role = "form", @id = "Course-form" }))
+                    @using (Html.BeginForm("AddExam", "Exam", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "Exam-form" }))
                     {
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title,
-                                                     new SelectList(Model.Categories, "Id", "Title"), "-- Select --",
-                                                     new { @class = "form-control", @id = "category-Id" })
+                        @Html.HiddenFor(m => m.Exam.Id,new { @id="exam-hidden-id"})
+                        <!-- First row-->
+                        <div class="row">
+                            <!--category field-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title, new SelectList(Model.Categories, "Id", "Title"), "-- Select --", new { @class = "form-control", @id = "category-Id" })
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <!--degree program field-->
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new SelectList(Model.DegreePrograms, "Id", "ProgramTitle"),  new { @class = "form-control", @id = "degree-Id" })
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <!--course field-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        @Html.DropDownListFor(x => x.Exam.Course.Id, new SelectList(Model.Courses, "Id", "CourseTitle"), new { @class = "form-control", @id = "Course-Id" })
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--Exam code field-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.ExamCode, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(x => x.Exam.ExamCode, new { @class = "form-control", @id = "exam-code" })
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <!--Exam date Field-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.ExamDate, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        <div class="input-group   date form_date " data-date="" data-date-format="dd M yyyy" data-link-format="yyyy-mm-dd">
+                                            @Html.TextBoxFor(x => x.Exam.ExamDate, new { @class = "form-control", @value = "12-02-2012", @id = "exam-date" })
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!--Exam Duration field-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Exam.Duration, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(x => x.Exam.Duration, new { @class = "form-control", @id = "exam-duration" })
+                                    </div>
+
+                                </div>
+                            </div>
+
+
 
                         </div>
+                            <!--End row-->
 
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.ProgramTitle,
-                                                        new SelectList(Model.DegreePrograms, "Id", "ProgramTitle"),
-                                                        "-- Select --",
-                                                        new { @class = "form-control", @id = "degree-Id" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label" })
-                            @Html.DropDownListFor(x => x.Exam.Course.Id,
-                                                        new SelectList(Model.Courses, "Id", "CourseTitle"),
-                                                        "--Select --",
-                                                        new { @class = "form-control", @id = "Course-Id" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.ExamCode, new { @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Exam.ExamCode, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Duration, new { @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Exam.Duration, new { @class = "form-control" })
-                        </div>
-                        <!--Date Picker Area-->
-                        <div class="form-group">
 
-                            @Html.LabelFor(x => x.Exam.ExamDate, new { @class = "control-label" })
-                            <div class="input-group   date form_date " data-date="" data-date-format="dd M yyyy" data-link-format="yyyy-mm-dd">
-                                @Html.TextBoxFor(x => x.Exam.ExamDate, new { @class = "form-control", @value = "12-02-2012" })
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+                         <!-- button -->
+                        <div class="form-group col-md-offset-4 ">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="submit" class="btn btn-primary" id="btn-form">Save</button>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="btn-form">Add</button>
-                        </div>
-                    </div>
-
-
                     }
+
                     <!--End Form-->
 
                 </div>
+                <!-- /#ion-icons -->
             </div>
+            <!-- /.tab-content -->
         </div>
-        <!--End panel body-->
+        <!-- /.nav-tabs-custom -->
     </div>
+    <!-- /.col -->
 </div>
+
 
 
 @section scripts {
 
     <script>
+        // date picker
         $('.form_date').datetimepicker({
 
             weekStart: 1,
@@ -129,14 +174,14 @@
         });
 
         $(document).ready(function () {
-
+           
             //Fetching programs list
             $("#category-Id").change(function () {
                 $("#degree-Id").empty();
                 var val = $(this).val();
                 $.ajax({
 
-                    url: "/api/Course/GetProgramsList/" + val,
+                    url: "/api/CourseService/GetProgramsList/" + val,
                     success: function (result) {
                         $.each(result, function (index, row) {
 
@@ -146,13 +191,14 @@
 
                 });
             });
+
             //Fetching course list
             $("#degree-Id").change(function () {
                 $("#Course-Id").empty();
                 var val = $(this).val();
 
                 $.ajax({
-                    url: "/api/Course/GetCourseList/" + val,
+                    url: "/api/CourseService/GetCourseList/" + val,
                     success: function (result, status) {
                         $.each(result, function (index, row) {
                             $("#Course-Id").append("<option value='" + row.id + "'>" + row.courseTitle + "</option>")
@@ -170,8 +216,9 @@
 
             var table = $("#exam-tbl").DataTable({
                 ajax: {
-                    url: "/api/exam/GetExamList",
+                    url: "/api/examservice/GetExamList",
                     dataSrc: ""
+                    
                 },
                 columns: [
                   {
@@ -187,7 +234,10 @@
                       data: "examCode"
                   },
                   {
-                      data: "duration"
+                      data: "duration",
+                      render: function (data, Type, Row) {
+                          return data + " mins"
+                      }
                   },
                   {
                       data: "dateTime"
@@ -195,13 +245,32 @@
                   {
                       data: "id",
                       render: function (data, Type, Row) {
-                          return "<a href='#'><span data-exam-id='" + data + "' class='glyphicon glyphicon-trash js-delete'></span>  </a>";
+                          return "<a href='#' ><span data-exam-id='" + data + "' class='glyphicon glyphicon-trash  js-delete'></span>  </a> "+"|" 
+                          + " <a  href='#' ><span data-exam-row='" + data + "' class='glyphicon glyphicon-edit  js-edit'></span></a>" + "|"
+                          + " <a  href='/question/ViewExamQuestion/'><span data-question-view='" + data + "' class='glyphicon glyphicon-list  js-view'></span></a>";
+
                       }
                   }
 
 
                 ]
 
+            });
+            // getting data value and storing in localstorage 
+            $("#exam-tbl").on("click", ".js-view", function (e) {
+                var btn = $(this);
+                var data= btn.attr("data-question-view");
+
+                localStorage.removeItem("Temp-question-data");
+
+                if (typeof (Storage) !== "undefined")
+                {
+                    localStorage.setItem("Temp-question-data", data);
+                    console.log(localStorage.getItem("Temp-question-data"));
+
+                }
+                
+               
             });
             $("#exam-tbl").on("click", ".js-delete", function () {
 
@@ -211,33 +280,75 @@
 
                     if (result) {
                         $.ajax({
-                            url: "/api/exam/DeleteExam/" + btn.attr("data-exam-id"),
+                            url: "/api/examservice/DeleteExam/" + btn.attr("data-exam-id"),
                             method: 'DELETE',
                             success: function () {
                                 table.row(btn.parents("tr").remove()).remove().draw();
                                 toastr.success("Deleted SuccessFully ");
+
                             },
                             error: function (response) {
-                                toastr.success(response.statusText);
+                                toastr.error(response.statusText);
 
                             }
-                            
-
-
 
                         })
-                    }
+                    } // end if
 
-                })
+                }) // end bootbox
+
+            });// end ON function
+
+            // Implementation for editing record
+            $("#exam-tbl").on("click", ".js-edit", function (e) {
+                
+                var btn = $(this);
+                var listTab = $("#list-tab");
+                var addTab = $("#add-tab");
+                var addContent = $("#add-Exam");
+                var listContent = $("#exam-list");
+
+                //adding active class to add tab 
+                listTab.next().addClass('active').show();
+                addContent.addClass('active');
+                // removing active class
+                listTab.removeClass('active'); // ListTab content
+                listContent.removeClass('active');
+
+                  $.ajax({
+                      url: "/api/examservice/GetExamById/" + btn.attr("data-exam-row"),
+                      method: 'GET',
+                      success: function (data) {
+
+                          $("#exam-hidden-id").val(data.id);
+                          $("#exam-code").val(data.examCode);
+                          $("#exam-duration").val(data.duration);
+                          $("#exam-date").val(data.examDate);
+                          $("#category-Id option:selected").text(data.category);
+                          $("#degree-Id option:selected").text(data.degree);
+                          $("#Course-Id option:selected").text(data.course)
+                          $("#Course-Id option:selected").val(data.courseId);
+                      },
+                      error: function (response) {
+                          toastr.error(response.statusText);
+
+                      }
 
 
+                  });
+                  
+                // Implmentation for deleting record
 
 
 
             });
 
+           
+        });// end Ready function
 
-        });
+
+
+
 
 
 

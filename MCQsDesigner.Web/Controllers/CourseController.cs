@@ -35,7 +35,7 @@ namespace MCQsDesigner.Web.Controllers
 
             var model = new CoursesViewModel()
             {
-                Categories = _category.GetAll(),
+                Categories = _category.GetAllCategories(),
                 DegreePrograms = _degree.GetAll()
 
             };

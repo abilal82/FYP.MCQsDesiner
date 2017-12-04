@@ -9,5 +9,6 @@ namespace MCQsDesigner.BOL
 {
     public class ApplicationUser :IdentityUser
     {
+        public virtual StudentProfile StudentProfile{ get; set; }
     }
 }

@@ -206,27 +206,33 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\API\CategoryController.cs" />
-    <Compile Include="Controllers\API\CourseController.cs" />
-    <Compile Include="Controllers\API\ExamController.cs" />
+    <Compile Include="Controllers\API\CategoryServiceController.cs" />
+    <Compile Include="Controllers\API\CourseServiceController.cs" />
+    <Compile Include="Controllers\API\ExamServiceController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTOs\CourseDTO.cs" />
+    <Compile Include="Models\DTOs\ExamDTO.cs" />
+    <Compile Include="Models\DTOs\QuestionDTO.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\CoursesViewModel.cs" />
     <Compile Include="Models\ViewModel\ExamViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\QuestionViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModel\DegreeProgramsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootbox.min.js" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -474,12 +480,19 @@
     <Content Include="Views\Course\ManageCourses.cshtml" />
     <Content Include="Views\Faculty\Index.cshtml" />
     <Content Include="Views\Exam\ManageExams.cshtml" />
+    <Content Include="Views\Question\ManageQuestions.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Shared\_MainDashLayout.cshtml" />
+    <Content Include="Views\Question\ViewExamQuestion.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\bootstrap\" />
+    <Folder Include="Content\build\" />
+    <Folder Include="Content\dist\" />
     <Folder Include="font-awesome\" />
     <Folder Include="Scripts\plugins\" />
-    <Folder Include="Views\Question\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

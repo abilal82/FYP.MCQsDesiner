@@ -19,8 +19,8 @@ namespace MCQsDesigner.Web.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-      
-                
+
+
         //public ApplicationDbContext DbConetxt
         //{
         //    get
@@ -88,7 +88,7 @@ namespace MCQsDesigner.Web.Controllers
                         {
                             return RedirectToAction("Index", "Admin");
                         }
-                        if (UserManager.IsInRole(user.Id, "Faculty"))
+                        else if (UserManager.IsInRole(user.Id, "Faculty"))
                         {
                             return RedirectToAction("Index", "Faculty");
                         }
@@ -157,6 +157,9 @@ namespace MCQsDesigner.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

@@ -22,26 +22,71 @@ namespace MCQsDesigner.DAL.DAC
             _context.Dispose();
         }
 
-        public IEnumerable<Category> GetAll() => _context.Categories.ToList();
+        public IEnumerable<Category> GetAllCategories()
+        {
+            try
+            {
+              return  _context.Categories.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
 
         public Category GetById(int id) =>  _context.Categories.Find(id);
 
 
-        public void InsertCategory( Category category)
+        public void InsertCategory( Category category)  
         {
+            try
+            {
+
             _context.Categories.Add(category);
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+            
+        
+            
 
         }
         public void DeleteCategory(int id)
         {
-            var category = _context.Categories.SingleOrDefault(x => x.Id ==id);
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            try
+            {
+                var category = _context.Categories.SingleOrDefault(x => x.Id == id);
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+               
+            }
+           
         }
         public void UpdateCategory(Category category)
         {
+            try
+            {
             _context.Entry(category).State = EntityState.Modified;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
         }
 
         
