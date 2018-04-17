@@ -1,0 +1,100 @@
+﻿@model IEnumerable <MCQsDesigner.Web.Models.ViewModel.QuestionViewModel>
+@{
+    ViewBag.Title = "AttemptExam";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+@{ 
+    int index = 1;
+}
+<div id="examQ">
+<div class="clock" style="margin:2em;"></div>
+<div class="message"></div>
+    @using (Html.BeginForm("AddExam", "Exam", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "Exam-form" }))
+    {
+        <input type="hidden" value="@ViewBag.ExamInfo.Time" id="exam-time" />
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Quiz Code : @ViewBag.ExamInfo.ExamCode</h3>
+                <label>  Duration :<span id="exam-time"></span> </label>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @foreach (var item in Model)
+                {
+                    <div class="box-group" id="accordion">
+                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                        <div class="panel box box-primary">
+                            <div class="box-header with-border">
+                                <h4 class="box-title">
+
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@index.ToString()" aria-expanded="true" class="">
+                                        Question  #@index.ToString()
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-@index.ToString()" class="panel-collapse collapse in" aria-expanded="true" style="">
+                                <div class="box-body">
+                                    <h4><strong>@Html.Raw(item.QuestionTitle)</strong></h4><br />
+
+
+                                    @Html.RadioButtonFor(x => item.CorrectAnswer, item.OptionA, new { @class = "minimal" })
+                                    @Html.LabelFor(x => item.OptionA)<br />
+                                    @Html.RadioButtonFor(x => item.CorrectAnswer, item.OptionB, new { @class = "minimal" })
+                                    @Html.LabelFor(x => item.OptionB)<br />
+                                    @Html.RadioButtonFor(x => item.CorrectAnswer, item.OptionC, new { @class = "minimal " })
+                                    @Html.LabelFor(x => item.OptionC)<br />
+                                    @Html.RadioButtonFor(x => item.CorrectAnswer, item.OptionD, new { @class = "minimal " })
+                                    @Html.LabelFor(x => item.OptionD)<br />
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    index++;
+                }
+                <!-- /.box-body -->
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    }
+
+</div>
+
+    
+
+
+@section scripts {
+<script>
+    
+		var clock;
+        
+		$(document).ready(function() {
+
+		    $("#examQ").hide();
+		    var timeval = 60 * Number($("#exam-time").val());
+
+		    clock = $('.clock').FlipClock(timeval, {
+		        clockFace: 'MinuteCounter',
+		        countdown: true,
+		        autoStart: false,
+		        callbacks: {
+		        	start: function() {
+		        		$('.message').html('The clock has started!');
+		        	}
+		        }
+		    });
+
+		    $('.start').click(function(e) {
+
+		    	clock.start();
+		    });
+
+		});
+</script>
+
+    
+}

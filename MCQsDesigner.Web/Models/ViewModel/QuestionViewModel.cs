@@ -49,6 +49,7 @@ namespace MCQsDesigner.Web.Models.ViewModel
         [Required(ErrorMessage = "Required filed ")]
         [DisplayName("Quiz")]
         public int ExamID { get; set; }
+        public string ExamCode { get; set; }
         public IEnumerable<Exam> Exams { get; set; }
     }
 }

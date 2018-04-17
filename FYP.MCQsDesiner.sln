@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCQsDesigner.BOL", "MCQsDesigner.BOL\MCQsDesigner.BOL.csproj", "{89C9F2AB-B203-4D43-BE14-E8C334360EC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCQsDesigner.DAL", "MCQsDesigner.DAL\MCQsDesigner.DAL.csproj", "{7CB52511-7574-477E-B4A7-F23941477D75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCQsDesigner.Web", "MCQsDesigner.Web\MCQsDesigner.Web.csproj", "{AEEC05E6-6D39-4F06-9103-E4050DF07B5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7DD04BDB-572A-42D1-B8B3-79A7735FD720}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -27,7 +27,7 @@ namespace MCQsDesigner.Web.Controllers
         public ActionResult ManageExams()
         { 
 
-            var model = new ExamViewModel() {
+            var viewModel = new ExamViewModel() {
 
                 Categories = _category.GetAllCategories(),
                 DegreePrograms = _degree.GetAll(),
@@ -37,37 +37,142 @@ namespace MCQsDesigner.Web.Controllers
             };
           
 
-            return View(model);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult AddExam(ExamViewModel  model)
+        public ActionResult AddExam(ExamViewModel  viewModel)
         {
-            ExamDAC examDAC = new ExamDAC(new ApplicationDbContext());
-            var exam = new Exam()
+            if(ModelState.IsValid)
             {
-                Id = model.Exam.Id,
-                ExamCode = model.Exam.ExamCode,
-                ExamDate = model.Exam.ExamDate,
-                Duration = model.Exam.Duration,
-                StartingTime = model.Exam.StartingTime,
-                CourseId = model.Exam.Course.Id
+                ExamDAC examDAC = new ExamDAC(new ApplicationDbContext());
+                var exam = new Exam()
+                {
+                    Id = viewModel.Exam.Id,
+                    ExamCode = viewModel.Exam.ExamCode,
+                    ExamDate = viewModel.Exam.ExamDate,
+                    Duration = viewModel.Exam.Duration,
+                    StartingTime = viewModel.Exam.StartingTime,
+                    CourseId = viewModel.Exam.Course.Id
 
-            };
+                };
 
-            examDAC.Insert(exam);
+                examDAC.Insert(exam);
 
 
+            }
+            else
+            {
+                var model = new ExamViewModel()
+                {
+
+                    Categories = _category.GetAllCategories(),
+                    DegreePrograms = _degree.GetAll(),
+                    Courses = _course.getAllCourses()
+
+
+                };
+                return View("ManageExams", model);
+            }
 
 
             return RedirectToAction("ManageExams");
         }
+
+        [HttpGet]
+        public ActionResult QuizList()
+        {
+            var viewModel = new ExamViewModel()
+            {
+
+                Categories = _category.GetAllCategories(),
+                //DegreePrograms = _degree.GetAll(),
+                //Courses = _course.getAllCourses()
+
+
+            };
+
+
+            return View(viewModel);
+        }
+        [HttpGet]
+        public ActionResult AvailableExam( ExamViewModel viewModel)
+        {
+           
+
+            return View();
+        } 
+
 
         [HttpPost]
         public ActionResult EditExam(ExamViewModel examView)
         {
             return RedirectToAction("ManageExams");
         }
+
+        public ActionResult AttemptExam(int id)
+        {
+
+
+            if (id> 0)
+            {
+                var examQuestionDAC = new ExamQuestionDAC();
+                List<QuestionViewModel> questionViewModel;
+                var listOfQuestion = examQuestionDAC.GetQuestionsByExamId(id);
+                var exam = new ExamDAC(new ApplicationDbContext());
+
+                if (listOfQuestion != null)
+                {
+                    questionViewModel = new List<QuestionViewModel>();
+
+                    foreach (var model in listOfQuestion)
+                    {
+                        questionViewModel.Add(new QuestionViewModel()
+                        {
+
+                            Id = model.Id,
+                            QuestionTitle = model.QuestionTitle,
+                            Marks = model.Marks,
+                            OptionA = model.OptionA,
+                            OptionB = model.OptionB,
+                            OptionC = model.OptionC,
+                            OptionD = model.OptionD,
+                            CorrectAnswer = model.CorrectAnswer,
+                          
+
+                        });
+                    }
+                    var examModel= exam.GetExamById(id);
+
+                    ExamViewModel eViewModel = new ExamViewModel()
+                    {
+                        ExamCode = examModel.ExamCode,
+                        Time =  examModel.Duration
+                    };
+
+                    ViewBag.ExamInfo = eViewModel;
+                    return View(questionViewModel);
+
+                }
+                else
+                {
+                    return Content("No question !");
+                }
+
+            }
+            else
+            {
+                return Content("Invalid Id");
+            }
+                
+
+            
+            
+                
+
+        }
+       
+
        
     }
 }

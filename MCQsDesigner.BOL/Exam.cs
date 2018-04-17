@@ -14,6 +14,7 @@ namespace MCQsDesigner.BOL
         public Exam()
         {
             ExamQuestion = new HashSet<ExamQuestion>();
+            ExamResults = new HashSet<ExamResult>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,6 +30,8 @@ namespace MCQsDesigner.BOL
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
 
+        public virtual ICollection<ExamResult> ExamResults { get; set; }
         public virtual ICollection<ExamQuestion> ExamQuestion { get; set; }
+
     }
 }

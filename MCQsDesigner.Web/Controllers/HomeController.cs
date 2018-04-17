@@ -24,7 +24,7 @@ namespace MCQsDesigner.Web.Controllers
                 {
                     return RedirectToAction("Index", "Faculty");
                 }
-             
+                
 
             }
 

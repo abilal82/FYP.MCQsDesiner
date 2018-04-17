@@ -11,6 +11,7 @@ namespace MCQsDesigner.Web
             // OLD dashBoard Assets
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                        "~/Scripts/jquery-{version}.js",
+                       
                        "~/Scripts/bootstrap.js",
                      "~/Scripts/bootbox.js",
                      "~/Scripts/respond.js",
@@ -22,6 +23,7 @@ namespace MCQsDesigner.Web
                        ));
             bundles.Add(new StyleBundle("~/ContentDasboard/css").Include(
                       "~/Content/bootstrap.min.css",
+                     
                       "~/Content/bootstrap/bootstrap-datetimepicker.min.css",
                        "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/sb-admin.css",
@@ -43,6 +45,7 @@ namespace MCQsDesigner.Web
             // Admin LTE DashBoard Assets
             bundles.Add(new ScriptBundle("~/bundles/JavascriptsLib").Include(
                          "~/Content/plugins/jQuery/jquery-2.2.3.min.js",
+                         "~/Scripts/FlipClock/flipclock.js",
                          "~/Content/bootstrap/js/bootstrap.min.js",
                          "~/Content/bootbox.min.js",
                          "~/Content/plugins/sparkline/jquery.sparkline.min.js",
@@ -60,6 +63,7 @@ namespace MCQsDesigner.Web
 
             bundles.Add(new StyleBundle("~/AdminLTEDasboard/css").Include(
                        "~/Content/bootstrap/css/bootstrap.min.css",
+                        "~/Scripts/FlipClock/flipclock.css",//FlipClock CSS used in attempting exam
                        "~/Content/dist/css/AdminLTE.min.css",
                        "~/Content/dist/css/skins/skin-blue.min.css",
                        "~/Content/datatables/css/datatables.bootstrap.css",

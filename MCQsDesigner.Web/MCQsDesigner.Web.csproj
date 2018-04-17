@@ -209,6 +209,7 @@
     <Compile Include="Controllers\API\CategoryServiceController.cs" />
     <Compile Include="Controllers\API\CourseServiceController.cs" />
     <Compile Include="Controllers\API\ExamServiceController.cs" />
+    <Compile Include="Controllers\API\UserServiceController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,10 +227,12 @@
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\CoursesViewModel.cs" />
     <Compile Include="Models\ViewModel\ExamViewModel.cs" />
+    <Compile Include="Models\ViewModel\FacultyViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\QuestionViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModel\DegreeProgramsViewModel.cs" />
+    <Compile Include="Models\ViewModel\StudentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -441,6 +445,9 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DatePicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\FlipClock\flipclock.css" />
+    <Content Include="Scripts\FlipClock\flipclock.js" />
+    <Content Include="Scripts\FlipClock\flipclock.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -478,13 +485,19 @@
     <Content Include="Views\Category\ManageCategory.cshtml" />
     <Content Include="Views\Category\DegreeProgram.cshtml" />
     <Content Include="Views\Course\ManageCourses.cshtml" />
-    <Content Include="Views\Faculty\Index.cshtml" />
     <Content Include="Views\Exam\ManageExams.cshtml" />
     <Content Include="Views\Question\ManageQuestions.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Shared\_MainDashLayout.cshtml" />
     <Content Include="Views\Question\ViewExamQuestion.cshtml" />
+    <Content Include="Views\User\ManageFaculty.cshtml" />
+    <Content Include="Views\User\ManageStudent.cshtml" />
+    <Content Include="Views\Shared\_AdminHeader.cshtml" />
+    <Content Include="Views\Faculty\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Exam\QuizList.cshtml" />
+    <Content Include="Views\Shared\_Quiztable.cshtml" />
+    <Content Include="Views\Exam\AttemptExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

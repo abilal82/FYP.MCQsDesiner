@@ -23,6 +23,8 @@ namespace MCQsDesigner.DAL
 
         public DbSet<StudentProfile> StudentProfiles { get; set; }
 
+        public DbSet<ExamResult> Results { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

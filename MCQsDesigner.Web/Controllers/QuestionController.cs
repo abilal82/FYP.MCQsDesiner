@@ -46,43 +46,51 @@ namespace MCQsDesigner.Web.Controllers
             ExamQuestionDAC QDac = new ExamQuestionDAC();
             if(!ModelState.IsValid)
             {
+
+                //ExamDAC exam = new ExamDAC(_context);
+                //QuestionViewModel VModel = new QuestionViewModel()
+                //{
+                //    QuestionTitle = model.QuestionTitle,
+                //    Marks = model.Marks,
+                //    OptionA = model.OptionA,
+                //    OptionB = model.OptionB,
+                //    OptionC = model.OptionC,
+                //    OptionD = model.OptionD,
+                //    CorrectAnswer = model.CorrectAnswer,
+                //    ExamID = model.ExamID,
+                //    Exams = exam.GetAll()
+                //};
                 using (_context)
                 {
                     ExamDAC exam = new ExamDAC(_context);
-                    QuestionViewModel VModel = new QuestionViewModel()
+                    QuestionViewModel Qmodel = new QuestionViewModel()
+                    {
+                        Exams = exam.GetAll()
+                    };
+                 
+                return View("ManageQuestions", Qmodel);
+                }
+
+               
+             
+            }
+            else
+            {
+
+                try
+                {
+                    ExamQuestion question = new ExamQuestion()
                     {
                         QuestionTitle = model.QuestionTitle,
+                        ExamID = model.ExamID,
                         Marks = model.Marks,
                         OptionA = model.OptionA,
                         OptionB = model.OptionB,
                         OptionC = model.OptionC,
                         OptionD = model.OptionD,
-                        CorrectAnswer = model.CorrectAnswer,
-                        ExamID = model.ExamID,
-                        Exams = exam.GetAll()
-                    };
-
-                    return View("ManageQuestions", VModel);
-                }
-             
-            }
-            else
-            {
-                ExamQuestion question = new ExamQuestion()
-                {
-                    QuestionTitle = model.QuestionTitle,
-                    ExamID = model.ExamID,
-                    Marks = model.Marks,
-                    OptionA = model.OptionA,
-                    OptionB = model.OptionB,
-                    OptionC = model.OptionC,
-                    OptionD = model.OptionD,
-                    CorrectAnswer = model.CorrectAnswer
+                        CorrectAnswer = model.CorrectAnswer
                     
-                };
-
-                try
-                {
+                    };
                     QDac.CreateQuestion(question);
                 }
                 catch (Exception ex)

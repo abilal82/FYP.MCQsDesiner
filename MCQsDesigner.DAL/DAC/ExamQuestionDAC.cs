@@ -37,6 +37,15 @@ namespace MCQsDesigner.DAL.DAC
             }
         }
 
+
+        public List<ExamQuestion> GetQuestionsByExamId(int examId)
+        {
+            using (_context)
+            {
+                return _context.ExamQuestions.Where(x => x.ExamID == examId).ToList();
+            }
+        }
+
         public void CreateQuestion(ExamQuestion question)
         {
             using (_context)

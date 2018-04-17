@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -105,6 +106,26 @@
     <Compile Include="Migrations\201711091359356_CreatedStudentAndRelationBetweenApplicationUser.Designer.cs">
       <DependentUpon>201711091359356_CreatedStudentAndRelationBetweenApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712121900513_AddingPropertiesToApllicationUser.cs" />
+    <Compile Include="Migrations\201712121900513_AddingPropertiesToApllicationUser.Designer.cs">
+      <DependentUpon>201712121900513_AddingPropertiesToApllicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801100548097_AddingResultCTable.cs" />
+    <Compile Include="Migrations\201801100548097_AddingResultCTable.Designer.cs">
+      <DependentUpon>201801100548097_AddingResultCTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803140833554_ChangingTableAndAttributeDatatype.cs" />
+    <Compile Include="Migrations\201803140833554_ChangingTableAndAttributeDatatype.Designer.cs">
+      <DependentUpon>201803140833554_ChangingTableAndAttributeDatatype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803140922565_AddingNewAttributesIntoExamResultAndRelationsWithStudentFile.cs" />
+    <Compile Include="Migrations\201803140922565_AddingNewAttributesIntoExamResultAndRelationsWithStudentFile.Designer.cs">
+      <DependentUpon>201803140922565_AddingNewAttributesIntoExamResultAndRelationsWithStudentFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803140929148_CreatingOneToManyRelationBtwExamResultAndExamClass.cs" />
+    <Compile Include="Migrations\201803140929148_CreatingOneToManyRelationBtwExamResultAndExamClass.Designer.cs">
+      <DependentUpon>201803140929148_CreatingOneToManyRelationBtwExamResultAndExamClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,6 +171,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711091359356_CreatedStudentAndRelationBetweenApplicationUser.resx">
       <DependentUpon>201711091359356_CreatedStudentAndRelationBetweenApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121900513_AddingPropertiesToApllicationUser.resx">
+      <DependentUpon>201712121900513_AddingPropertiesToApllicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801100548097_AddingResultCTable.resx">
+      <DependentUpon>201801100548097_AddingResultCTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803140833554_ChangingTableAndAttributeDatatype.resx">
+      <DependentUpon>201803140833554_ChangingTableAndAttributeDatatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803140922565_AddingNewAttributesIntoExamResultAndRelationsWithStudentFile.resx">
+      <DependentUpon>201803140922565_AddingNewAttributesIntoExamResultAndRelationsWithStudentFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803140929148_CreatingOneToManyRelationBtwExamResultAndExamClass.resx">
+      <DependentUpon>201803140929148_CreatingOneToManyRelationBtwExamResultAndExamClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

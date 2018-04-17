@@ -1,0 +1,251 @@
+﻿@model MCQsDesigner.Web.Models.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "ManageStudent";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+
+<h2>ManageStudent</h2>
+
+
+<div id="page-wrapper">
+    <h2>
+        <i class="glyphicon glyphicon-edit"></i> Manage Students
+
+    </h2>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+
+                <li class="active"><a href="#student-list" data-toggle="tab">Students List</a></li>
+                <li><a href="#add-student" data-toggle="tab">Add Student</a></li>
+            </ul>
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="student-list">
+                    <table id="tblstudent" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Email</td>
+                                <td>FirstName</td>
+                                <td>LastName</td>
+                                <td>Roll No.</td>
+                                <td>Session</td>
+                                <td>Action</td>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- #List -->
+                <!-- #Add-->
+                <div class="tab-pane box-body " id="add-student">
+                    @using (Html.BeginForm("AddStudentInfo", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+                    {
+
+
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Email, new { @class = "control-label col-md-3" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Password, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.PasswordFor(x => x.Password, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.ConfirmPassword, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.FirstName, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.LastName, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.RollNumber, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.RollNumber, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.RollNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Session, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.Session, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.Session, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-7">
+                                    <input type="submit" value="Register" class="btn btn-default" />
+                                </div>
+                            </div>
+                    }
+                </div>
+                <!-- /#ion-icons -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+
+
+<!---->
+
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+
+
+
+
+            var table = $("#tblstudent").DataTable({
+                ajax: {
+                    url: "/api/userservice/GetStudentList",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "email"
+                    },
+                    {
+                        data: "firstName"
+                    },
+                    {
+                        data: "userName"
+
+                    },
+                    {
+                        data: "rollNumber"
+                    },
+                    {
+                        data: "session"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, categoryRow) {
+                            return "<a href='#'><span data-student-id='" + data + "' class='glyphicon glyphicon-trash js-delete'></span>  </a>";
+                        }
+                    }
+                ]
+
+
+            });
+
+
+            $("#tblstudent").on("click", ".js-delete", function () {
+
+                var btn = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this ?", function (result) {
+
+                    if (result) {
+                        $.ajax({
+                            url: "/api/userservice/DeleteUser/" + btn.attr("data-student-id"),
+                            method: 'DELETE',
+                            success: function () {
+                                table.row(btn.parents("tr").remove()).remove().draw();
+
+                            }
+
+                        }).done(function () {
+                            toastr.success(" Succesfully deleted !");
+                        });
+                    }
+
+                })
+
+            });
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

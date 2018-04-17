@@ -42,6 +42,7 @@ namespace MCQsDesigner.Web.Controllers
             return View(model);
         }
 
+        
         public ActionResult AddCourse(CoursesViewModel model)
         {
             var course = new Course()
@@ -56,5 +57,6 @@ namespace MCQsDesigner.Web.Controllers
             return RedirectToAction("ManageCourses");
         }
 
+       
     }
 }

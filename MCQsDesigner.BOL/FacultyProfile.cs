@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCQsDesigner.BOL
 {
-    public class ReportCard
+    class FacultyProfile
     {
-
     }
 }

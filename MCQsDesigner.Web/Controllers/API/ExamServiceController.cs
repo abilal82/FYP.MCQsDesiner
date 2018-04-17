@@ -150,5 +150,46 @@ namespace MCQsDesigner.Web.Controllers.API
             }
         }
 
+
+        [HttpGet]
+        public IHttpActionResult GetExamListByCourseId(int id)
+        {
+
+            using (_context = new ApplicationDbContext())
+            {
+                _exam = new ExamDAC(_context);
+                try
+                {
+                    var resultList = _exam.GetListOfExamsByCourseId(id)
+                                   .Select(exam => new ExamDTO()
+                                   {
+                                       Id = exam.Id,
+                                       ExamCode = exam.ExamCode,
+                                       ExamDate = exam.ExamDate.Value.ToString("MMM dd, yyyy"),
+                                       Duration = exam.Duration
+
+                                   }).ToList();
+                    if (resultList.Count != 0)
+                    {
+                        return Ok(resultList);
+                    }
+                    else
+                    {
+                        return NotFound();
+
+
+                    }
+                }
+                catch
+                {
+                    return InternalServerError();
+                }
+            }
+
+           
+
+
+        }
+
     }
 }

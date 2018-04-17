@@ -1,0 +1,253 @@
+﻿
+@model MCQsDesigner.Web.Models.ViewModel.ExamViewModel
+@{
+    ViewBag.Title = "ManageExams";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+
+}
+
+<div id="page-wrapper">
+    <h2>
+        <i class="glyphicon glyphicon-edit"></i> Search Your Quiz
+    </h2>
+</div>
+
+  <!--Starting Datatable-->
+<div class="box ">
+    <div class="box-header "></div>
+    
+    <div class="box-body">
+        <div id="add-Exam" class="tab-pane box-body ">
+            <!--Form Area-->
+            <form id="search-form" class="form-horizontal" method="post">
+
+               
+                @Html.HiddenFor(m => m.Exam.Id, new { @id = "exam-hidden-id" })
+                        <!-- First row-->
+                <div class="row">
+                    <!--category field-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label col-md-4" })
+                            <div class="col-md-5">
+                                @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title, new SelectList(Model.Categories, "Id", "Title"), "", new { @class = "form-control", @id = "category-Id" })
+                             
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <!--degree program field-->
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-4" })
+                            <div class="col-md-5">
+                               
+                                <select class = "form-control" id = "degree-Id" ></select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!--course field-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label col-md-4" })
+                            <div class="col-md-5">
+                               
+                                <select class="form-control" id = "Course-Id"></select>
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+                            <!--End row-->
+                         <!-- button -->
+                        <div class="form-group col-md-offset-4 ">
+                            <div class="col-md-offset-5 col-md-7">
+                                <button type="submit" class="btn btn-primary" id="btn-form">Search</button>
+                            </div>
+                        </div>
+            </form>
+           
+         
+
+            <!--End Form-->
+
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+
+        <!-- /.box -->
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Available Quizes </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="exam-tbl" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            
+                            <th>Exam Code</th>
+                            <th>Duration</th>
+                            <th>Date Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+
+
+<!--End Datatable-->
+
+
+
+@section scripts {
+
+    <script>
+        // date picker
+        
+
+        $(document).ready(function () {
+           
+            //Fetching programs list
+            $("#category-Id").change(function () {
+                $("#degree-Id").empty();
+                var val = $(this).val();
+                $.ajax({
+
+                    url: "/api/CourseService/GetProgramsList/" + val,
+                    success: function (result) {
+                        $.each(result, function (index, row) {
+
+                            $("#degree-Id").append("<option value='" + row.id + "'>" + row.programTitle + "</option>")
+                        })
+                    }
+
+                });
+            });
+
+            //Fetching course list
+            $("#degree-Id").change(function () {
+                $("#Course-Id").empty();
+                var val = $(this).val();
+
+                $.ajax({
+                    url: "/api/CourseService/GetCourseList/" + val,
+                    success: function (result, status) {
+                        $.each(result, function (index, row) {
+                            $("#Course-Id").append("<option value='" + row.id + "'>" + row.courseTitle + "</option>")
+                        })
+                    },
+                    error: function (response) {
+                        $("#Course-Id").append("<option >" + response.statusText + "</option>")
+                    }
+
+                });
+            });
+
+            $("#btn-form").click(function (event) {
+               
+                event.preventDefault(); // avoid to execute the actual submition of the form.
+                $("#exam-tbl").DataTable().destroy();
+               
+                
+                var courseVal  = $("#Course-Id").val();
+
+
+               // console.log(courseVal);
+          
+             
+               var table = $("#exam-tbl").DataTable({
+                    ajax: {
+                        url: "/api/examservice/GetExamListByCourseId/" + courseVal,
+                        type : "GET",
+                        dataSrc: "",
+                       
+                       error: function (xhr, status, error) {
+                           
+                           toastr.error(error);
+                           
+                        }
+                     /*   complete: function (jqXHR, textStatus) {
+                          toastr.info( jqXHR+" "+textStatus)
+                        }*/
+
+                    },
+                    sZeroRecords: "No records to display",
+                    columns: [
+                      {
+                          data: "id"
+                      },
+                     
+                      {
+                          data: "examCode"
+                      },
+                      {
+                          data: "duration",
+                          render: function (data, Type, Row) {
+                              return data + " mins"
+                          }
+                      },
+                      {
+                          data: "examDate"
+                      },
+                      {
+                          data: "id",
+                          render: function (data, Type, Row) {
+                              return "<a href='/Exam/AttemptExam/" + data + "' target='_blank' class='btn btn-primary btn-xs'>Take Quiz </a> ";
+                             
+
+                          }
+                      }
+
+
+                    ]
+
+                });
+                 
+               
+                
+            })
+
+           
+        });// end Ready function
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+}

@@ -11,16 +11,14 @@ namespace MCQsDesigner.BOL
 {
     public class StudentProfile
     {
+        public StudentProfile()
+        {
+            Examresults = new HashSet<ExamResult>();
+        }
         [Key, ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        [StringLength(25)]
-        [Required]
-        public string FirstName { get; set; }
-        [StringLength(25)]
-        [Required]
-        public string LastName { get; set; }
         [StringLength(25)]
         [Required]
         public string RollNumber { get; set; }
@@ -28,7 +26,7 @@ namespace MCQsDesigner.BOL
         [Required]
         public string Session { get; set; }
 
-        
+        public ICollection<ExamResult> Examresults { get; set; }
 
 
     }

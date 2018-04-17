@@ -1,0 +1,122 @@
+﻿@model MCQsDesigner.Web.Models.ViewModel.FacultyViewModel
+@{
+    ViewBag.Title = "ManageFaculty";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+
+<h2>ManageFaculty</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+
+
+                <li class="active"><a href="#add-faculty" data-toggle="tab">Add Faculty</a></li>
+            </ul>
+            <div class="tab-content">
+
+
+                <!-- #List -->
+                <!-- #Add-->
+                <div class="tab-pane active box-body " id="add-faculty">
+                    @using (Html.BeginForm("AddFacultyInfo", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+                    {
+
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Role, new { @class = "control-label col-md-3" })
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(x => x.Role,
+                                    new SelectListItem[]
+                                    {
+                                        new SelectListItem() { Value ="Faculty", Text="Faculty"},
+                                        new SelectListItem() { Value ="Admin",Text="Admin" }
+                                    },
+                                    new { @class = "form-control " })
+
+                                    @Html.ValidationMessageFor(x => x.Role, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Email, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(X => X.Password, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.PasswordFor(x => x.Password, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.ConfirmPassword, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.FirstName, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.LastName, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-7">
+                                    <input type="submit" value="Register" class="btn btn-default" />
+                                </div>
+                            </div>
+                            }
+                        </div>
+                <!-- /#ion-icons -->
+                    </div>
+            <!-- /.tab-content -->
+                </div>
+        <!-- /.nav-tabs-custom -->
+            </div>
+    <!-- /.col -->
+        </div>
+
+  

@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
-            
+
             <ul class="nav nav-tabs">
                 <li class="active" id="list-tab"><a href="#exam-list" data-toggle="tab">Exam List</a></li>
                 <li id="add-tab"><a href="#add-Exam" data-toggle="tab">Add Exam</a></li>
@@ -25,7 +25,7 @@
             <div class="tab-content">
 
                 <div id="exam-list" class="tab-pane fade in active">
-                    <table id="exam-tbl" class="table table-bordered table-striped" >
+                    <table id="exam-tbl" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -47,7 +47,8 @@
                     <!--Form Area-->
                     @using (Html.BeginForm("AddExam", "Exam", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "Exam-form" }))
                     {
-                        @Html.HiddenFor(m => m.Exam.Id,new { @id="exam-hidden-id"})
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.Exam.Id, new { @id = "exam-hidden-id" })
                         <!-- First row-->
                         <div class="row">
                             <!--category field-->
@@ -56,6 +57,7 @@
                                     @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label col-md-4" })
                                     <div class="col-md-5">
                                         @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title, new SelectList(Model.Categories, "Id", "Title"), "-- Select --", new { @class = "form-control", @id = "category-Id" })
+                                        @Html.ValidationMessageFor(x => x.Exam.Course.DegreeProgram.Category, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
@@ -70,7 +72,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-4" })
                                     <div class="col-md-5">
-                                        @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new SelectList(Model.DegreePrograms, "Id", "ProgramTitle"),  new { @class = "form-control", @id = "degree-Id" })
+                                        @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new SelectList(Model.DegreePrograms, "Id", "ProgramTitle"), new { @class = "form-control", @id = "degree-Id" })
+                                        @Html.ValidationMessageFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
@@ -84,6 +87,7 @@
                                     @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label col-md-4" })
                                     <div class="col-md-5">
                                         @Html.DropDownListFor(x => x.Exam.Course.Id, new SelectList(Model.Courses, "Id", "CourseTitle"), new { @class = "form-control", @id = "Course-Id" })
+                                        @Html.ValidationMessageFor(x => x.Exam.Course.Id, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
@@ -95,6 +99,7 @@
                                     @Html.LabelFor(x => x.Exam.ExamCode, new { @class = "control-label col-md-4" })
                                     <div class="col-md-5">
                                         @Html.TextBoxFor(x => x.Exam.ExamCode, new { @class = "form-control", @id = "exam-code" })
+                                        @Html.ValidationMessageFor(x => x.Exam.ExamCode, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
@@ -108,6 +113,7 @@
                                     <div class="col-md-5">
                                         <div class="input-group   date form_date " data-date="" data-date-format="dd M yyyy" data-link-format="yyyy-mm-dd">
                                             @Html.TextBoxFor(x => x.Exam.ExamDate, new { @class = "form-control", @value = "12-02-2012", @id = "exam-date" })
+                                            @Html.ValidationMessageFor(x => x.Exam.ExamDate, "", new { @class = "text-danger" })
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
                                     </div>
@@ -124,6 +130,7 @@
                                     @Html.LabelFor(x => x.Exam.Duration, new { @class = "control-label col-md-4" })
                                     <div class="col-md-5">
                                         @Html.TextBoxFor(x => x.Exam.Duration, new { @class = "form-control", @id = "exam-duration" })
+                                        @Html.ValidationMessageFor(x => x.Exam.Duration, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
@@ -174,7 +181,7 @@
         });
 
         $(document).ready(function () {
-           
+
             //Fetching programs list
             $("#category-Id").change(function () {
                 $("#degree-Id").empty();
@@ -218,7 +225,7 @@
                 ajax: {
                     url: "/api/examservice/GetExamList",
                     dataSrc: ""
-                    
+
                 },
                 columns: [
                   {
@@ -245,7 +252,7 @@
                   {
                       data: "id",
                       render: function (data, Type, Row) {
-                          return "<a href='#' ><span data-exam-id='" + data + "' class='glyphicon glyphicon-trash  js-delete'></span>  </a> "+"|" 
+                          return "<a href='#' ><span data-exam-id='" + data + "' class='glyphicon glyphicon-trash  js-delete'></span>  </a> " + "|"
                           + " <a  href='#' ><span data-exam-row='" + data + "' class='glyphicon glyphicon-edit  js-edit'></span></a>" + "|"
                           + " <a  href='/question/ViewExamQuestion/'><span data-question-view='" + data + "' class='glyphicon glyphicon-list  js-view'></span></a>";
 
@@ -256,21 +263,20 @@
                 ]
 
             });
-            // getting data value and storing in localstorage 
+            // getting data value and storing in localstorage
             $("#exam-tbl").on("click", ".js-view", function (e) {
                 var btn = $(this);
-                var data= btn.attr("data-question-view");
+                var data = btn.attr("data-question-view");
 
                 localStorage.removeItem("Temp-question-data");
 
-                if (typeof (Storage) !== "undefined")
-                {
+                if (typeof (Storage) !== "undefined") {
                     localStorage.setItem("Temp-question-data", data);
                     console.log(localStorage.getItem("Temp-question-data"));
 
                 }
-                
-               
+
+
             });
             $("#exam-tbl").on("click", ".js-delete", function () {
 
@@ -301,49 +307,49 @@
 
             // Implementation for editing record
             $("#exam-tbl").on("click", ".js-edit", function (e) {
-                
+
                 var btn = $(this);
                 var listTab = $("#list-tab");
                 var addTab = $("#add-tab");
                 var addContent = $("#add-Exam");
                 var listContent = $("#exam-list");
 
-                //adding active class to add tab 
+                //adding active class to add tab
                 listTab.next().addClass('active').show();
                 addContent.addClass('active');
                 // removing active class
                 listTab.removeClass('active'); // ListTab content
                 listContent.removeClass('active');
 
-                  $.ajax({
-                      url: "/api/examservice/GetExamById/" + btn.attr("data-exam-row"),
-                      method: 'GET',
-                      success: function (data) {
+                $.ajax({
+                    url: "/api/examservice/GetExamById/" + btn.attr("data-exam-row"),
+                    method: 'GET',
+                    success: function (data) {
 
-                          $("#exam-hidden-id").val(data.id);
-                          $("#exam-code").val(data.examCode);
-                          $("#exam-duration").val(data.duration);
-                          $("#exam-date").val(data.examDate);
-                          $("#category-Id option:selected").text(data.category);
-                          $("#degree-Id option:selected").text(data.degree);
-                          $("#Course-Id option:selected").text(data.course)
-                          $("#Course-Id option:selected").val(data.courseId);
-                      },
-                      error: function (response) {
-                          toastr.error(response.statusText);
+                        $("#exam-hidden-id").val(data.id);
+                        $("#exam-code").val(data.examCode);
+                        $("#exam-duration").val(data.duration);
+                        $("#exam-date").val(data.examDate);
+                        $("#category-Id option:selected").text(data.category);
+                        $("#degree-Id option:selected").text(data.degree);
+                        $("#Course-Id option:selected").text(data.course)
+                        $("#Course-Id option:selected").val(data.courseId);
+                    },
+                    error: function (response) {
+                        toastr.error(response.statusText);
 
-                      }
+                    }
 
 
-                  });
-                  
+                });
+
                 // Implmentation for deleting record
 
 
 
             });
 
-           
+
         });// end Ready function
 
 

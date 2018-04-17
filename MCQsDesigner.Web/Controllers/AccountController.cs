@@ -63,7 +63,7 @@ namespace MCQsDesigner.Web.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
-        }
+            }
         
         [HttpPost]
         [AllowAnonymous]
@@ -71,19 +71,21 @@ namespace MCQsDesigner.Web.Controllers
         public  ActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
+           
 
             using (ApplicationDbContext _context = new ApplicationDbContext())
             {
-
                 var user = _context.Users.ToList().Find(x => x.Email == model.Email);
-                var result =  SignInManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
+            if (user != null)
+            {
+
+                var result = SignInManager.PasswordSignIn(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
                 switch (result)
                 {
-                    case SignInStatus.Success:
+
+                        case SignInStatus.Success:
                         if (UserManager.IsInRole(user.Id, "Admin"))
                         {
                             return RedirectToAction("Index", "Admin");
@@ -92,9 +94,13 @@ namespace MCQsDesigner.Web.Controllers
                         {
                             return RedirectToAction("Index", "Faculty");
                         }
+                        else if(UserManager.IsInRole(user.Id,"Student"))
+                        {
+                            return RedirectToAction("Index", "Student");
+                        }
                         else
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home", "User is assigned role");
                         }
 
 
@@ -102,7 +108,15 @@ namespace MCQsDesigner.Web.Controllers
                     default:
                         ModelState.AddModelError("", "Invalid login attempt.");
                         return View(model);
+                    }
+
                 }
+                else
+                {
+                    ModelState.AddModelError("", " User Not Exists !.");
+                    return View(model);
+                }
+
 
             }
 

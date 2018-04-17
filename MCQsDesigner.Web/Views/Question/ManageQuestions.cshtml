@@ -17,7 +17,7 @@
 <div class="row">
     @using (Html.BeginForm("AddQuestion", "Question", FormMethod.Post, new { @class = "form", role = "form", @id = "question-form" }))
     {
-        @Html.ValidationSummary()
+       
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -30,7 +30,7 @@
                     <div class="box-body pad">
                         <div class="form-group">
                             @Html.TextAreaFor(x => x.QuestionTitle, new { @class = "textarea", @placeholder = "Place some text here", style = "width: 100%; height: 172px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" })
-                            @Html.ValidationMessageFor(x => x.QuestionTitle)
+                            @Html.ValidationMessageFor(x => x.QuestionTitle, "", new { @class = "text-danger" })
                         </div>
 
                     </div>
@@ -55,42 +55,42 @@
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.Marks, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.Marks, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Marks)
+                            @Html.ValidationMessageFor(x => x.Marks,"", new { @class="text-danger"})
 
 
                         </div>
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.OptionA, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.OptionA, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.OptionA)
+                            @Html.ValidationMessageFor(x => x.OptionA,"", new { @class = "text-danger" })
 
 
                         </div>
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.OptionB, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.OptionB, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.OptionB)
+                            @Html.ValidationMessageFor(x => x.OptionB, "", new { @class = "text-danger" })
 
 
                         </div>
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.OptionC, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.OptionC, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.OptionC)
+                            @Html.ValidationMessageFor(x => x.OptionC, "", new { @class = "text-danger" })
 
 
                         </div>
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.OptionD, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.OptionD, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.OptionD)
+                            @Html.ValidationMessageFor(x => x.OptionD, "", new { @class = "text-danger" })
 
 
                         </div>
                         <div class="form-gruop col-md-6">
                             @Html.LabelFor(x => x.CorrectAnswer, new { @class = "control-label" })
                             @Html.TextBoxFor(x => x.CorrectAnswer, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.CorrectAnswer)
+                            @Html.ValidationMessageFor(x => x.CorrectAnswer, "", new { @class = "text-danger" })
                         </div>
 
                     </div>

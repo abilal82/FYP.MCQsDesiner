@@ -8,6 +8,8 @@ namespace MCQsDesigner.Web.Models.ViewModel
 {
     public class ExamViewModel
     {
+        public string ExamCode { get; set; }
+        public int Time { get; set; }
         public Exam Exam { get; set; }
         public IEnumerable<Course> Courses { get; set; }
         public IEnumerable<DegreeProgram> DegreePrograms { get; set; }
