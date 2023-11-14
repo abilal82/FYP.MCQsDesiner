@@ -15,7 +15,7 @@ This is a web-based MCQsDesiner App or quiz app which provides facilities to con
 **Architecture**
 
 
-➡️ Data Acces Layer Architecture <br />
+➡️ Data Acces Layer  <br />
 ➡️ Bussiness Object Layer<br />
 ➡️ Presentation Layer<br />
 
