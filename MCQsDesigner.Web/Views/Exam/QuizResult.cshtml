@@ -1,0 +1,98 @@
+﻿@model MCQsDesigner.Web.Models.ViewModel.ResultViewModel
+@{
+    ViewBag.Title = "QuizResult";
+    Layout = "~/Views/Shared/_MainDashLayout.cshtml";
+}
+
+<h2>Report</h2>
+
+
+
+<div class="row">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Report Card</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tbody>
+                    
+                       
+                      
+                        
+                       <tr>
+
+                        <th>Degree Program</th>
+                           <td><strong>@Model.Category <Span></Span> @Model.Degree</strong></td>
+                       
+                        </tr>
+                        <tr>
+                            <th>Course Code</th>
+                            <td><strong>@Model.CourseCode</strong></td>
+                        </tr>
+                       
+                     <tr>  
+                        <th>Exam Code</th>
+                         <td><strong>@Model.ExamCode</strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Exam Duration</th>
+                        <td><strong>@Model.ExamDuration <span>min</span></strong></td> 
+                    </tr>    
+                    <tr>
+                        <th>Total Question</th>
+                        <td><strong>@Model.TotalNoOFQuestion</strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Attempted Question</th>
+                        <td><strong>@Model.NoOfQuestionAttempt <span> Attempt</span></strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Total Marks</th>
+                        <td><strong>@Model.TotalMarks</strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Marks Obtained</th>
+                        <td><strong>@Model.MarksObtained <span>Out of @Model.TotalMarks</span></strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Not Attempt</th>
+                        @if (Model.NoOfNotAttempt == 0)
+                        {
+                            <td><strong>All Attempt</strong></td>
+                        }
+                        else
+                        {
+                            <td><strong>@Model.NoOfNotAttempt</strong></td>
+                        }
+                        
+                    </tr> 
+                    <tr>
+                        <th>Percentage</th>
+                        
+                        <td><strong>@Model.Percentage <span>%</span></strong></td>
+                    </tr> 
+                    <tr>
+                        <th>Result</th>
+                        @if((int)Model.Percentage < (int)ViewBag.PassingPercentage)
+                        {
+                         <td><strong>Fail </strong></td>
+
+                        }
+                        else if ((int)Model.Percentage >= (int)ViewBag.PassingPercentage)
+                        {
+                            <td><strong>Pass </strong></td>
+                        }
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+     
+    </div>
+    <!-- /.box -->
+
+    
+    <!-- /.box -->
+</div>

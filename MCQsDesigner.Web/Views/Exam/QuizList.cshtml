@@ -20,66 +20,64 @@
         <div id="add-Exam" class="tab-pane box-body ">
             <!--Form Area-->
             <form id="search-form" class="form-horizontal" method="post">
-
-               
                 @Html.HiddenFor(m => m.Exam.Id, new { @id = "exam-hidden-id" })
                         <!-- First row-->
                 <div class="row">
                     <!--category field-->
-                    <div class="col-md-6">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2">
+                    
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label col-md-4" })
-                            <div class="col-md-5">
-                                @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title, new SelectList(Model.Categories, "Id", "Title"), "", new { @class = "form-control", @id = "category-Id" })
-                             
-                            </div>
-
+                           
+                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.Category.Title, new { @class = "control-label col-md-offset-4 " })
+                            @Html.DropDownListFor(x => x.Exam.Course.DegreeProgram.Category.Title, new SelectList(Model.Categories, "Id", "Title"), "", new { @class = "form-control", @id = "category-Id" })
                         </div>
 
 
 
                     </div>
-
+                    <div class="col-md-1"></div>
                     <!--degree program field-->
-                    <div class="col-md-6">
+                    <div class="col-md-3 ">
 
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-4" })
-                            <div class="col-md-5">
-                               
+                            @Html.LabelFor(x => x.Exam.Course.DegreeProgram.ProgramTitle, new { @class = "control-label col-md-offset-4" })
+                                                          
                                 <select class = "form-control" id = "degree-Id" ></select>
-                            </div>
+                           
 
                         </div>
 
 
                     </div>
-
+                    <div class="col-md-1"></div>
                     <!--course field-->
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label col-md-4" })
-                            <div class="col-md-5">
+                            @Html.LabelFor(x => x.Exam.Course.Id, new { @class = "control-label col-md-offset-4" })
+                            
                                
                                 <select class="form-control" id = "Course-Id"></select>
                                 
-                            </div>
+                            
 
                         </div>
 
                     </div>
 
-
+                    <div class="col-md-1"></div>
 
 
                 </div>
                             <!--End row-->
                          <!-- button -->
-                        <div class="form-group col-md-offset-4 ">
-                            <div class="col-md-offset-5 col-md-7">
-                                <button type="submit" class="btn btn-primary" id="btn-form">Search</button>
-                            </div>
+                <div class="row">
+                    <div class="form-group col-md-offset-4 ">
+                        <div class="col-md-offset-5 col-md-7">
+                            <button type="submit" class="btn btn-primary" id="btn-form">Search</button>
                         </div>
+                    </div>
+                </div>
             </form>
            
          

@@ -24,7 +24,11 @@ namespace MCQsDesigner.Web.Controllers
                 {
                     return RedirectToAction("Index", "Faculty");
                 }
-                
+                if (User.IsInRole("Student"))
+                {
+                    return RedirectToAction("Index", "Student");
+                }
+
 
             }
 

@@ -51,5 +51,9 @@ namespace MCQsDesigner.Web.Models.ViewModel
         public int ExamID { get; set; }
         public string ExamCode { get; set; }
         public IEnumerable<Exam> Exams { get; set; }
+
+        public string SelectedAnswer { get; set; }
+
+
     }
 }

@@ -15,12 +15,14 @@ namespace MCQsDesigner.Web.Controllers
         private CategoryDAC _category;
         private DegreeProgramDAC _degree;
         private CourseDAC _course;
+        private ExamDAC _exam;
        
         public ExamController()
         {
             _category = new CategoryDAC();
             _degree = new DegreeProgramDAC();
             _course = new CourseDAC();
+           
         }
 
 
@@ -43,7 +45,7 @@ namespace MCQsDesigner.Web.Controllers
         [HttpPost]
         public ActionResult AddExam(ExamViewModel  viewModel)
         {
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 ExamDAC examDAC = new ExamDAC(new ApplicationDbContext());
                 var exam = new Exam()
@@ -119,6 +121,8 @@ namespace MCQsDesigner.Web.Controllers
                 var examQuestionDAC = new ExamQuestionDAC();
                 List<QuestionViewModel> questionViewModel;
                 var listOfQuestion = examQuestionDAC.GetQuestionsByExamId(id);
+
+               
                 var exam = new ExamDAC(new ApplicationDbContext());
 
                 if (listOfQuestion != null)
@@ -138,7 +142,7 @@ namespace MCQsDesigner.Web.Controllers
                             OptionC = model.OptionC,
                             OptionD = model.OptionD,
                             CorrectAnswer = model.CorrectAnswer,
-                          
+                             ExamID = id
 
                         });
                     }
@@ -171,8 +175,68 @@ namespace MCQsDesigner.Web.Controllers
                 
 
         }
-       
 
+        [HttpPost]
+        public ActionResult SubmitExam(List<QuestionViewModel> listOfquestionViewModel)
+        {
+            int _totalNoOFQuestion = 0;
+            int _noOfQuestionAttempt = 0;
+            int _marksObtained = 0;
+            int _totalMarks = 0;
+            int _noOfNotAttempt = 0;
+            decimal _percentage = 0;
+            ViewBag.PassingPercentage = 50.0;
+            var _examId = listOfquestionViewModel.Select(x=>x.ExamID);
+          
+
+            foreach( var questions in listOfquestionViewModel)
+            {
+
+                _totalNoOFQuestion++;
+                _totalMarks = _totalMarks + questions.Marks;
+
+                if (questions.CorrectAnswer.Equals(questions.SelectedAnswer,StringComparison.InvariantCultureIgnoreCase))
+                {
+                    _marksObtained = _marksObtained + questions.Marks;
+                    _noOfQuestionAttempt++;
+
+                }
+                else if(questions.SelectedAnswer == null || questions.SelectedAnswer =="")
+                {
+                    _noOfNotAttempt++;
+                }
+
+
+            }
+
+            _percentage = (decimal)(_marksObtained  * 100) / _totalMarks;
+
+            _exam = new ExamDAC(new ApplicationDbContext());
+
+           var ExamEntityGraph = _exam.GetExamToProgramCategoryGraph(_examId.First());
+
+
+            ResultViewModel resultViewModel = new ResultViewModel()
+            {
+                TotalMarks = _totalMarks,
+                NoOfQuestionAttempt = _noOfQuestionAttempt,
+                MarksObtained = _marksObtained,
+                NoOfNotAttempt = _noOfNotAttempt,
+                TotalNoOFQuestion = _totalNoOFQuestion,
+                NoOfNotAttemptedQuestion = _noOfNotAttempt,
+                Percentage = _percentage,
+                Category = ExamEntityGraph.Course.DegreeProgram.Category.Title,
+                Degree = ExamEntityGraph.Course.DegreeProgram.ProgramTitle,
+                CourseCode = ExamEntityGraph.Course.CourseCode,
+                ExamCode = ExamEntityGraph.ExamCode,
+                ExamDuration = ExamEntityGraph.Duration
+
+
+
+            };
+
+            return View("QuizResult",resultViewModel);
+        }
        
     }
 }

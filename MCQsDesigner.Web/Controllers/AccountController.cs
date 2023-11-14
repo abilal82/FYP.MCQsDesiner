@@ -158,8 +158,8 @@ namespace MCQsDesigner.Web.Controllers
                     
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                      var roleManager = new RoleManager<IdentityRole>(roleStore);
-                     roleStore.CreateAsync(new IdentityRole("Faculty"));
-                     UserManager.AddToRole(user.Id, "Faculty");
+                     roleStore.CreateAsync(new IdentityRole("Admin"));
+                     UserManager.AddToRole(user.Id, "Admin");
                     
                     
                     SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

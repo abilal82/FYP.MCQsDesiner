@@ -203,7 +203,7 @@
             $("#degree-Id").change(function () {
                 $("#Course-Id").empty();
                 var val = $(this).val();
-
+                console.log(val);
                 $.ajax({
                     url: "/api/CourseService/GetCourseList/" + val,
                     success: function (result, status) {

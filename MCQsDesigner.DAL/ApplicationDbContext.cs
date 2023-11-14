@@ -12,7 +12,7 @@ namespace MCQsDesigner.DAL
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext() 
-            : base("name=FYPDBConnection")
+            : base("name=QuizAppConnection")
         {
         }
         public DbSet<Category> Categories { get; set; }

@@ -42,7 +42,8 @@ namespace MCQsDesigner.DAL.DAC
         {
             using (_context)
             {
-                return _context.ExamQuestions.Where(x => x.ExamID == examId).ToList();
+                return _context.ExamQuestions.Include(x => x.Exam)
+                                             .Where(x => x.ExamID == examId).ToList();
             }
         }
 

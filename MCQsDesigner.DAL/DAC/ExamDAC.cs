@@ -97,5 +97,24 @@ namespace MCQsDesigner.DAL.DAC
 
 
         }
+
+        public Exam GetExamToProgramCategoryGraph(int id  )
+        {
+            if (id > 0)
+            {
+                var examModel = _context.Exams.Include(c => c.Course)
+                                               .Include(d => d.Course.DegreeProgram)
+                                               .Include(c => c.Course.DegreeProgram.Category).Where(e => e.Id == id).SingleOrDefault();
+
+                return examModel;
+            }
+            else
+            {
+                return null;
+            }
+
+
+           
+        }
     }
 }
