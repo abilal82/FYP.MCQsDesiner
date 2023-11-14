@@ -6,27 +6,27 @@ This is a web-based MCQsDesiner App or quiz app which provides facilities to con
 ## Tech Stack Used:
 
 
-➡️ Asp.net MVC
-➡️ JAVSCRIPT
-➡️ Jquery - some pluigns
-➡️ Sql Server
-➡️ Entity Framework ORM
+➡️ Asp.net MVC<br />
+➡️ JAVSCRIPT<br />
+➡️ Jquery - some pluigns <br />
+➡️ Sql Server <br />
+➡️ Entity Framework ORM <br />
 
 **Architecture**
 
 
-➡️ Data Acces Layer Architecture
-➡️ Bussiness Object Layer
-➡️ Presentation Layer
+➡️ Data Acces Layer Architecture <br />
+➡️ Bussiness Object Layer<br />
+➡️ Presentation Layer<br />
 
 **To run this app.**
 
-➡️ Open it in Visual studio (Recommeded VS2019)
-➡️ Configure app.config file DAL project and webconfig file in web.config in web project.
-➡️ when the app run create default user which would have admin role.
-   - To create default admin -> use [localhost]/Account/Register url
-once you create admin user then you may login for further registeration for faculty and student.
-➡️ You dont' need too create database but make sure databse would be MSSQL Server. Tables will be cretaed automatically by EntityFrame 6 when app will run. Code first approach is being used in this project.
+➡️ Open it in Visual studio (Recommeded VS2019)<br />
+➡️ Configure app.config file DAL project and webconfig file in web.config in web project.<br />
+➡️ when the app run create default user which would have admin role.<br />
+   - To create default admin -> use [localhost]/Account/Register url<br />
+once you create admin user then you may login for further registeration for faculty and student.<br />
+➡️ You dont' need too create database but make sure databse would be MSSQL Server. Tables will be cretaed automatically by EntityFrame 6 when app will run. Code first approach is being used in this project.<br />
 
 
 
