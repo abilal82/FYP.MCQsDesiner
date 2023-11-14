@@ -3,19 +3,32 @@
 This is a web-based MCQsDesiner App or quiz app which provides facilities to conduct quizzes. It is an intelligent system in the sense that the system will generate questions randomly from questions poolteacthers have been created.The system will facilitate tecahers to prepare quizzes and they can set countdown timer for exam duration and Students will have to finish the quiz in time otherwise the system will submit the quiz automatically.  The system will provide facility to teachers, they do not need to check the quiz manually this system will check & generate results automatically. It has admin module as well which will faclitating admin to manage teachers and students propfile and courses.
 
 
-
 ## Tech Stack USed:
-- Asp.net MVC
-- JAVSCRIPT
-- Jquery - some pluigns
-- Sql Server
-- Entity Framework ORM
+➡️ Asp.net MVC
+➡️ JAVSCRIPT
+➡️ Jquery - some pluigns
+➡️ Sql Server
+➡️ Entity Framework ORM
 
 #### Architecture
 
- - Data Acces Layer Architecture
- - Bussiness Object Layer
- - Presentation Layer
+➡️ Data Acces Layer Architecture
+➡️ Bussiness Object Layer
+➡️ Presentation Layer
+
+### To run this app.
+
+➡️ Open it in Visual studio (Recommeded VS2019)
+➡️ Configure app.config file DAL project and webconfig file in web.config in web project.
+➡️ when the app run create default user which would have admin role.
+   - To create default admin -> use [localhost]/Account/Register url
+once you create admin user then you may login for further registeration for faculty and student.
+➡️ You dont' need too create database but make sure databse would be MSSQL Server. Tables will be cretaed automatically by EntityFrame 6 when app will run. Code first approach is being used in this project.
+
+
+
+*NOTE:* THIS IS JUST FOR LEARNING PURPOSE PROJECT  AND ITS WAS DEVLELOPED IN 2017 ⏲️
+
 
 
 ## Login Screens
