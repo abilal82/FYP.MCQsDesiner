@@ -26,7 +26,7 @@ This is a web-based MCQsDesiner App or quiz app which provides facilities to con
 ➡️ when the app run create default user which would have admin role.<br />
    - To create default admin -> use [localhost]/Account/Register url<br />
 once you create admin user then you may login for further registeration for faculty and student.<br />
-➡️ You dont' need too create database but make sure databse would be MSSQL Server. Tables will be cretaed automatically by EntityFrame 6 when app will run. Code first approach is being used in this project.<br />
+You dont' need too create database but make sure databse would be MSSQL Server. Tables will be cretaed automatically by EntityFrame 6 when app will run. Code first approach is being used in this project.<br />
 
 
 
